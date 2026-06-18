@@ -35,9 +35,10 @@ makedocs(;
             asset("https://control-toolbox.org/assets/js/documentation.js"),
         ],
     ),
-    pages=["Introduction" => "index.md",
-           "Direct method" => "direct.md",
-           "Indirect method & turnpike property" => "indirect.md",
+    pages=[
+        "Introduction" => "index.md",
+        "Direct method" => "direct.md",
+        "Indirect method & turnpike property" => "indirect.md",
     ],
 )
 
