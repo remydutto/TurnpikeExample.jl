@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - anas-docs        
     tags: '*'
   pull_request:
   
