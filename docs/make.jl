@@ -41,4 +41,5 @@ makedocs(;
     ],
 )
 
-deploydocs(; repo=repo_url * ".git", devbranch="main")
+#deploydocs(; repo=repo_url * ".git", devbranch="main")
+deploydocs(; repo=repo_url * ".git", devbranch="main", branch="gh-pages", push_preview=true)
