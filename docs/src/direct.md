@@ -351,16 +351,16 @@ switches between its bounds to approximate an infinite switching frequency it ca
 
 A standard remedy is to add a small quadratic regularization term to the cost:
 
-$$
+```math
 J_\varepsilon(x,y,u)
 = \frac{1}{2}\int_0^T \left(x^2(t)+y^2(t)\right)\mathrm{d}t
 + \varepsilon \int_0^T u^2(t)\,\mathrm{d}t,
-$$
+```
 
-where $0 < \varepsilon \ll 1$. The penalty on $u^2$ makes the Hamiltonian strictly
+where ``0 < \varepsilon \ll 1``. The penalty on ``u^2`` makes the Hamiltonian strictly
 concave in $u$, which regularizes the bang-bang structure and yields a smooth,
 numerically well-behaved control. The solution then converges to the original
-bang-bang optimal control as $\varepsilon \to 0$.
+bang-bang optimal control as ``\varepsilon \to 0``.
 
 In the auxiliary formulation, this corresponds to replacing the cost-state dynamics by
 
@@ -463,6 +463,6 @@ plt_regularized_control
 
 !!! note
     The regularized problem is a perturbation of the original — its solution differs
-    from the true bang-bang control, but converges to it as ε → 0. In practice, it
+    from the true bang-bang control, but converges to it as ``\varepsilon \to 0``. In practice, it
     is used either as a smoother when the bang-bang structure makes the direct solve
-    unstable, or as a warm start for a subsequent solve at ε = 0.
+    unstable, or as a warm start for a subsequent solve at ``\varepsilon = 0``.
