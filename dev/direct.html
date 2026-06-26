@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Direct method · TurnpikeExample</title><meta name="title" content="Direct method · TurnpikeExample"/><meta property="og:title" content="Direct method · TurnpikeExample"/><meta property="twitter:title" content="Direct method · TurnpikeExample"/><meta name="description" content="Documentation for TurnpikeExample."/><meta property="og:description" content="Documentation for TurnpikeExample."/><meta property="twitter:description" content="Documentation for TurnpikeExample."/><script data-outdated-warner src="assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.050/juliamono.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL="."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="assets/documenter.js"></script><script src="search_index.js"></script><script src="siteinfo.js"></script><script src="../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="assets/themes/catppuccin-mocha.css" data-theme-name="catppuccin-mocha"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="assets/themes/catppuccin-macchiato.css" data-theme-name="catppuccin-macchiato"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="assets/themes/catppuccin-frappe.css" data-theme-name="catppuccin-frappe"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="assets/themes/catppuccin-latte.css" data-theme-name="catppuccin-latte"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="assets/themeswap.js"></script><link href="https://control-toolbox.org/assets/css/documentation.css" rel="stylesheet" type="text/css"/><script src="https://control-toolbox.org/assets/js/documentation.js"></script></head><body><div id="documenter"><nav class="docs-sidebar"><div class="docs-package-name"><span class="docs-autofit"><a href="index.html">TurnpikeExample</a></span></div><button class="docs-search-query input is-rounded is-small is-clickable my-2 mx-auto py-1 px-2" id="documenter-search-query">Search docs (Ctrl + /)</button><ul class="docs-menu"><li><a class="tocitem" href="index.html">Introduction</a></li><li class="is-active"><a class="tocitem" href="direct.html">Direct method</a><ul class="internal"><li><a class="tocitem" href="#Packages"><span>Packages</span></a></li><li><a class="tocitem" href="#Auxiliary-formulation"><span>Auxiliary formulation</span></a></li><li><a class="tocitem" href="#Problem-data"><span>Problem data</span></a></li><li><a class="tocitem" href="#OCP-definition"><span>OCP definition</span></a></li><li><a class="tocitem" href="#Direct-solve"><span>Direct solve</span></a></li><li><a class="tocitem" href="#Integration-schemes-and-continuation"><span>Integration schemes and continuation</span></a></li><li><a class="tocitem" href="#Comparison-of-the-controls"><span>Comparison of the controls</span></a></li><li><a class="tocitem" href="#Continuation-example"><span>Continuation example</span></a></li><li><a class="tocitem" href="#Reducing-control-chattering"><span>Reducing control chattering</span></a></li></ul></li><li><a class="tocitem" href="indirect.html">Indirect method &amp; turnpike property</a></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><a class="docs-sidebar-button docs-navbar-link fa-solid fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a><nav class="breadcrumb"><ul class="is-hidden-mobile"><li class="is-active"><a href="direct.html">Direct method</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href="direct.html">Direct method</a></li></ul></nav><div class="docs-right"><a class="docs-navbar-link" href="https://github.com/remydutto/TurnpikeExample.jl" title="View the repository on GitHub"><span class="docs-icon fa-brands"></span><span class="docs-label is-hidden-touch">GitHub</span></a><a class="docs-settings-button docs-navbar-link fa-solid fa-gear" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-article-toggle-button fa-solid fa-chevron-up" id="documenter-article-toggle-button" href="javascript:;" title="Collapse all docstrings"></a></div></header><article class="content" id="documenter-page"><h1 id="Direct-methods"><a class="docs-heading-anchor" href="#Direct-methods">Direct methods</a><a id="Direct-methods-1"></a><a class="docs-heading-anchor-permalink" href="#Direct-methods" title="Permalink"></a></h1><p>We now solve the turnpike optimal control problem using a direct transcription method. The continuous-time problem is discretized on a time grid, and the resulting finite-dimensional nonlinear programming problem is solved numerically.</p><p>Recall that the problem is</p><p class="math-container">\[\left\{
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Direct method · TurnpikeExample</title><meta name="title" content="Direct method · TurnpikeExample"/><meta property="og:title" content="Direct method · TurnpikeExample"/><meta property="twitter:title" content="Direct method · TurnpikeExample"/><meta name="description" content="Documentation for TurnpikeExample."/><meta property="og:description" content="Documentation for TurnpikeExample."/><meta property="twitter:description" content="Documentation for TurnpikeExample."/><script data-outdated-warner src="assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.050/juliamono.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL="."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="assets/documenter.js"></script><script src="search_index.js"></script><script src="siteinfo.js"></script><script src="../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="assets/themes/catppuccin-mocha.css" data-theme-name="catppuccin-mocha"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="assets/themes/catppuccin-macchiato.css" data-theme-name="catppuccin-macchiato"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="assets/themes/catppuccin-frappe.css" data-theme-name="catppuccin-frappe"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="assets/themes/catppuccin-latte.css" data-theme-name="catppuccin-latte"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="assets/themeswap.js"></script><link href="https://control-toolbox.org/assets/css/documentation.css" rel="stylesheet" type="text/css"/><script src="https://control-toolbox.org/assets/js/documentation.js"></script></head><body><div id="documenter"><nav class="docs-sidebar"><div class="docs-package-name"><span class="docs-autofit"><a href="index.html">TurnpikeExample</a></span></div><button class="docs-search-query input is-rounded is-small is-clickable my-2 mx-auto py-1 px-2" id="documenter-search-query">Search docs (Ctrl + /)</button><ul class="docs-menu"><li><a class="tocitem" href="index.html">Introduction</a></li><li class="is-active"><a class="tocitem" href="direct.html">Direct method</a><ul class="internal"><li><a class="tocitem" href="#Packages"><span>Packages</span></a></li><li><a class="tocitem" href="#Auxiliary-formulation"><span>Auxiliary formulation</span></a></li><li><a class="tocitem" href="#Problem-data"><span>Problem data</span></a></li><li><a class="tocitem" href="#OCP-definition"><span>OCP definition</span></a></li><li><a class="tocitem" href="#Direct-solve"><span>Direct solve</span></a></li><li><a class="tocitem" href="#Integration-schemes-and-continuation"><span>Integration schemes and continuation</span></a></li><li><a class="tocitem" href="#Comparison-of-the-controls"><span>Comparison of the controls</span></a></li><li><a class="tocitem" href="#Continuation-example"><span>Continuation example</span></a></li><li><a class="tocitem" href="#Reducing-control-chattering"><span>Reducing control chattering</span></a></li></ul></li><li><a class="tocitem" href="indirect.html">Indirect method &amp; turnpike property</a></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><a class="docs-sidebar-button docs-navbar-link fa-solid fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a><nav class="breadcrumb"><ul class="is-hidden-mobile"><li class="is-active"><a href="direct.html">Direct method</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href="direct.html">Direct method</a></li></ul></nav><div class="docs-right"><a class="docs-navbar-link" href="https://github.com/remydutto/TurnpikeExample.jl" title="View the repository on GitHub"><span class="docs-icon fa-brands"></span><span class="docs-label is-hidden-touch">GitHub</span></a><a class="docs-settings-button docs-navbar-link fa-solid fa-gear" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-article-toggle-button fa-solid fa-chevron-up" id="documenter-article-toggle-button" href="javascript:;" title="Collapse all docstrings"></a></div></header><article class="content" id="documenter-page"><h1 id="Direct-methods"><a class="docs-heading-anchor" href="#Direct-methods">Direct methods</a><a id="Direct-methods-1"></a><a class="docs-heading-anchor-permalink" href="#Direct-methods" title="Permalink"></a></h1><p>Consider the following optimal control problem:</p><p class="math-container">\[\left\{
 \begin{array}{ll}
 \displaystyle \min_{x,y,u}
 J(x,y,u)
@@ -10,7 +10,7 @@ J(x,y,u)
 \dot x(t) = u(t),
 \\[0.5em]
 
-\displaystyle \dot y(t) = u(t) - \frac{y(t)}{2},
+\displaystyle \dot y(t) =- u(t) - \frac{y(t)}{2},
 \\[0.5em]
 
 -M \leq u(t) \leq M,
@@ -29,9 +29,9 @@ x^2 + y^2
 u = 0,
 \quad
 u - \frac{y}{2} = 0
-\right\}.\]</p><p>Hence the static solution is</p><p class="math-container">\[(x^\star, y^\star, u^\star) = (0,0,0).\]</p><p>For large final time <code>T</code>, we expect the optimal trajectory to display the turnpike property: it rapidly approaches the static equilibrium, remains close to it for most of the time interval, and then leaves it to satisfy the terminal constraint.</p><h2 id="Packages"><a class="docs-heading-anchor" href="#Packages">Packages</a><a id="Packages-1"></a><a class="docs-heading-anchor-permalink" href="#Packages" title="Permalink"></a></h2><pre><code class="language-julia hljs">using OptimalControl
+\right\}.\]</p><h2 id="Packages"><a class="docs-heading-anchor" href="#Packages">Packages</a><a id="Packages-1"></a><a class="docs-heading-anchor-permalink" href="#Packages" title="Permalink"></a></h2><pre><code class="language-julia hljs">using OptimalControl
 using NLPModelsIpopt
-using Plots</code></pre><h2 id="Auxiliary-formulation"><a class="docs-heading-anchor" href="#Auxiliary-formulation">Auxiliary formulation</a><a id="Auxiliary-formulation-1"></a><a class="docs-heading-anchor-permalink" href="#Auxiliary-formulation" title="Permalink"></a></h2><p>To use a terminal cost, we introduce an auxiliary state <code>c</code> such that</p><p class="math-container">\[\dot c(t)
+using Plots</code></pre><h2 id="Auxiliary-formulation"><a class="docs-heading-anchor" href="#Auxiliary-formulation">Auxiliary formulation</a><a id="Auxiliary-formulation-1"></a><a class="docs-heading-anchor-permalink" href="#Auxiliary-formulation" title="Permalink"></a></h2><p>To reduce the optimal control problem to a Mayer form, we introduce an auxiliary state <code>c</code> such that</p><p class="math-container">\[\dot c(t)
 =
 \frac{1}{2}\left(x^2(t) + y^2(t)\right),
 \qquad
@@ -54,8 +54,8 @@ F_1(s)
 \\
 1
 \\
-1
-\end{pmatrix}.\]</p><p>Notice that the last component of <code>F_1</code> is <code>1</code> because the dynamics is</p><p class="math-container">\[\dot y(t) = u(t) - \frac{y(t)}{2}.\]</p><h2 id="Problem-data"><a class="docs-heading-anchor" href="#Problem-data">Problem data</a><a id="Problem-data-1"></a><a class="docs-heading-anchor-permalink" href="#Problem-data" title="Permalink"></a></h2><pre><code class="language-julia hljs">T = 50.0
+-1
+\end{pmatrix}.\]</p><h2 id="Problem-data"><a class="docs-heading-anchor" href="#Problem-data">Problem data</a><a id="Problem-data-1"></a><a class="docs-heading-anchor-permalink" href="#Problem-data" title="Permalink"></a></h2><pre><code class="language-julia hljs">T = 50.0
 M = 1.0
 
 s0 = [0.0, 1.0, -0.5]
@@ -72,10 +72,10 @@ nothing</code></pre><pre><code class="language-julia hljs">F0(s) = [
 F1(s) = [
     0.0,
     1.0,
-    1.0,
+    -1.0,
 ]
 
-nothing</code></pre><h2 id="OCP-definition"><a class="docs-heading-anchor" href="#OCP-definition">OCP definition</a><a id="OCP-definition-1"></a><a class="docs-heading-anchor-permalink" href="#OCP-definition" title="Permalink"></a></h2><p>We define the optimal control problem using the <code>OptimalControl.jl</code> DSL.</p><pre><code class="language-julia hljs">ocp = @def begin
+nothing</code></pre><h2 id="OCP-definition"><a class="docs-heading-anchor" href="#OCP-definition">OCP definition</a><a id="OCP-definition-1"></a><a class="docs-heading-anchor-permalink" href="#OCP-definition" title="Permalink"></a></h2><p>We define the optimal control problem as follows:</p><pre><code class="language-julia hljs">ocp = @def begin
     t ∈ [0, T], time
 
     s = (c, x, y) ∈ R³, state
@@ -102,7 +102,7 @@ nothing</code></pre><pre class="documenter-example-output"><code class="nohighli
    ├─ <span class="sgr1">Modeler</span>: <span class="sgr36"><span class="sgr1">adnlp</span></span>
    └─ <span class="sgr1">Solver</span>: <span class="sgr36"><span class="sgr1">ipopt</span></span>
 
-▫ This is Ipopt version 3.14.19, running with linear solver MUMPS 5.8.2.
+▫ This is Ipopt version 3.14.19, running with linear solver MUMPS 5.9.0.
 
 Number of nonzeros in equality constraint Jacobian...:     3255
 Number of nonzeros in inequality constraint Jacobian.:        0
@@ -119,30 +119,30 @@ Total number of inequality constraints...............:        0
         inequality constraints with only upper bounds:        0
 
 iter    objective    inf_pr   inf_du lg(mu)  ||d||  lg(rg) alpha_du alpha_pr  ls
-   0  1.0000000e-01 9.00e-01 1.24e-02   0.0 0.00e+00    -  0.00e+00 0.00e+00   0
-   1 -2.1375618e+00 1.13e-01 3.09e-01  -6.0 2.29e+00    -  6.86e-01 1.00e+00h  1
-   2 -2.6170937e+00 3.67e-02 1.09e-02  -1.5 1.06e+00    -  9.74e-01 1.00e+00h  1
-   3  1.0586253e+00 4.58e-03 1.10e-05  -2.3 3.71e+00    -  1.00e+00 1.00e+00h  1
-   4  1.0630356e+00 1.98e-03 8.27e-03  -3.8 3.00e-01    -  8.17e-01 1.00e+00h  1
-   5  1.0582532e+00 6.45e-04 4.50e-03  -4.7 4.11e-01    -  7.94e-01 1.00e+00h  1
-   6  1.0545864e+00 2.11e-04 2.15e-03  -5.5 3.26e-01    -  7.70e-01 1.00e+00h  1
-   7  1.0534492e+00 2.57e-05 6.14e-04  -5.6 1.37e-01    -  8.19e-01 1.00e+00h  1
-   8  1.0531979e+00 2.86e-06 5.25e-06  -5.9 7.87e-02    -  9.93e-01 1.00e+00h  1
-   9  1.0531751e+00 1.36e-07 2.45e-07  -7.0 1.06e-01    -  9.96e-01 1.00e+00h  1
+   0  1.0000000e-01 9.00e-01 1.50e-02   0.0 0.00e+00    -  0.00e+00 0.00e+00   0
+   1 -4.5335615e-01 1.42e-01 9.77e-01  -6.0 1.16e+00    -  4.85e-01 1.00e+00h  1
+   2  1.1515220e+00 3.18e-02 7.52e-02  -6.3 1.60e+00    -  7.90e-01 1.00e+00h  1
+   3  3.4676228e+00 7.58e-03 5.85e-04  -1.9 2.41e+00    -  9.96e-01 1.00e+00h  1
+   4  3.4484725e+00 3.67e-03 7.01e-03  -2.9 3.19e-01    -  9.29e-01 1.00e+00h  1
+   5  3.4309682e+00 1.34e-03 6.76e-03  -4.0 4.07e-01    -  8.35e-01 1.00e+00h  1
+   6  3.4249896e+00 3.92e-04 2.05e-03  -4.8 3.87e-01    -  8.83e-01 1.00e+00h  1
+   7  3.4231980e+00 5.01e-05 5.64e-04  -5.7 2.14e-01    -  8.91e-01 1.00e+00h  1
+   8  3.4228648e+00 4.34e-06 2.93e-05  -5.4 1.66e-01    -  9.57e-01 1.00e+00h  1
+   9  3.4228088e+00 1.79e-06 2.94e-06  -6.3 1.15e-01    -  9.93e-01 1.00e+00h  1
 iter    objective    inf_pr   inf_du lg(mu)  ||d||  lg(rg) alpha_du alpha_pr  ls
-  10  1.0531740e+00 3.06e-08 2.22e-16  -8.0 1.29e-01    -  1.00e+00 1.00e+00h  1
-  11  1.0531739e+00 3.74e-09 3.60e-08  -9.3 1.38e-01    -  9.95e-01 1.00e+00h  1
-  12  1.0531741e+00 7.53e-11 2.22e-16 -11.0 2.34e-02    -  1.00e+00 1.00e+00h  1
+  10  3.4227987e+00 2.49e-07 4.91e-07  -7.3 1.59e-01    -  9.94e-01 1.00e+00h  1
+  11  3.4227972e+00 4.22e-08 1.71e-07  -8.0 2.15e-01    -  9.97e-01 1.00e+00h  1
+  12  3.4227974e+00 4.21e-09 1.78e-15  -9.1 1.44e-01    -  1.00e+00 1.00e+00h  1
 
 Number of Iterations....: 12
 
                                    (scaled)                 (unscaled)
-Objective...............:   1.0531741339573568e+00    1.0531741339573568e+00
-Dual infeasibility......:   2.2204460492503131e-16    2.2204460492503131e-16
-Constraint violation....:   7.5279338318523514e-11    7.5279338318523514e-11
-Variable bound violation:   9.8339425491644761e-09    9.8339425491644761e-09
-Complementarity.........:   9.2994826784649494e-11    9.2994826784649494e-11
-Overall NLP error.......:   9.2994826784649494e-11    9.2994826784649494e-11
+Objective...............:   3.4227974229772458e+00    3.4227974229772458e+00
+Dual infeasibility......:   1.7763568394002505e-15    1.7763568394002505e-15
+Constraint violation....:   4.2115044784907241e-09    4.2115044784907241e-09
+Variable bound violation:   8.1148197050850968e-09    8.1148197050850968e-09
+Complementarity.........:   3.7248665011323705e-09    3.7248665011323705e-09
+Overall NLP error.......:   4.2115044784907241e-09    4.2115044784907241e-09
 
 
 Number of objective function evaluations             = 13
@@ -152,7 +152,7 @@ Number of inequality constraint evaluations          = 0
 Number of equality constraint Jacobian evaluations   = 13
 Number of inequality constraint Jacobian evaluations = 0
 Number of Lagrangian Hessian evaluations             = 12
-Total seconds in IPOPT                               = 6.314
+Total seconds in IPOPT                               = 6.680
 
 EXIT: Optimal Solution Found.</code></pre><pre><code class="language-julia hljs">plt_direct = plot(
     direct_sol;
@@ -160,7 +160,7 @@ EXIT: Optimal Solution Found.</code></pre><pre><code class="language-julia hljs"
     size = (800, 800),
 )
 
-plt_direct</code></pre><img src="direct-1851aa2d.svg" alt="Example block output"/><h2 id="Integration-schemes-and-continuation"><a class="docs-heading-anchor" href="#Integration-schemes-and-continuation">Integration schemes and continuation</a><a id="Integration-schemes-and-continuation-1"></a><a class="docs-heading-anchor-permalink" href="#Integration-schemes-and-continuation" title="Permalink"></a></h2><p>Direct methods rely on a discretization of the dynamics on a time grid</p><p class="math-container">\[t_0 &lt; t_1 &lt; \cdots &lt; t_N.\]</p><p>Several integration schemes are available.</p><table><tr><th style="text-align: left">Symbol</th><th style="text-align: left">Method</th><th style="text-align: center">Order</th></tr><tr><td style="text-align: left"><code>:euler</code></td><td style="text-align: left">Explicit Euler</td><td style="text-align: center">1</td></tr><tr><td style="text-align: left"><code>:trapeze</code></td><td style="text-align: left">Trapezoidal rule</td><td style="text-align: center">2</td></tr><tr><td style="text-align: left"><code>:midpoint</code></td><td style="text-align: left">Implicit midpoint</td><td style="text-align: center">2</td></tr><tr><td style="text-align: left"><code>:gauss_legendre_2</code></td><td style="text-align: left">Gauss–Legendre, 2 stages</td><td style="text-align: center">4</td></tr><tr><td style="text-align: left"><code>:gauss_legendre_3</code></td><td style="text-align: left">Gauss–Legendre, 3 stages</td><td style="text-align: center">6</td></tr></table><p>A useful numerical strategy is continuation. One solves a sequence of increasingly accurate problems, using each solution as a warm start for the next one:</p><p class="math-container">\[(N_1,\varepsilon_1)
+plt_direct</code></pre><img src="direct-a22a7d43.svg" alt="Example block output"/><div class="admonition is-warning" id="Control-chattering-9376fd4b0cd28200"><header class="admonition-header">Control chattering<a class="admonition-anchor" href="#Control-chattering-9376fd4b0cd28200" title="Permalink"></a></header><div class="admonition-body"><p>The control exhibits <strong>chattering</strong>: it switches infinitely fast between its bounds on a set of positive measure. This is consistent with a singular arc structure, where the Pontryagin maximum principle fails to determine the optimal control uniquely from the sign of the switching function.</p></div></div><h2 id="Integration-schemes-and-continuation"><a class="docs-heading-anchor" href="#Integration-schemes-and-continuation">Integration schemes and continuation</a><a id="Integration-schemes-and-continuation-1"></a><a class="docs-heading-anchor-permalink" href="#Integration-schemes-and-continuation" title="Permalink"></a></h2><p>Direct methods rely on a discretization of the dynamics on a time grid</p><p class="math-container">\[t_0 &lt; t_1 &lt; \cdots &lt; t_N.\]</p><p>Several integration schemes are available.</p><table><tr><th style="text-align: left">Symbol</th><th style="text-align: left">Method</th><th style="text-align: center">Order</th></tr><tr><td style="text-align: left"><code>:euler</code></td><td style="text-align: left">Explicit Euler</td><td style="text-align: center">1</td></tr><tr><td style="text-align: left"><code>:trapeze</code></td><td style="text-align: left">Trapezoidal rule</td><td style="text-align: center">2</td></tr><tr><td style="text-align: left"><code>:midpoint</code></td><td style="text-align: left">Implicit midpoint</td><td style="text-align: center">2</td></tr><tr><td style="text-align: left"><code>:gauss_legendre_2</code></td><td style="text-align: left">Gauss–Legendre, 2 stages</td><td style="text-align: center">4</td></tr><tr><td style="text-align: left"><code>:gauss_legendre_3</code></td><td style="text-align: left">Gauss–Legendre, 3 stages</td><td style="text-align: center">6</td></tr></table><p>A useful numerical strategy is continuation. One solves a sequence of increasingly accurate problems, using each solution as a warm start for the next one:</p><p class="math-container">\[(N_1,\varepsilon_1)
 \longrightarrow
 (N_2,\varepsilon_2)
 \longrightarrow
@@ -170,7 +170,7 @@ plt_direct</code></pre><img src="direct-1851aa2d.svg" alt="Example block output"
 \qquad
 N_1 &lt; \cdots &lt; N_k,
 \qquad
-\varepsilon_1 &gt; \cdots &gt; \varepsilon_k.\]</p><p>We now compare three discretization schemes.</p><pre><code class="language-julia hljs">sol_trapeze = solve(
+\varepsilon_1 &gt; \cdots &gt; \varepsilon_k.\]</p><p>We now compare three discretization schemes for a fixed grid size and tolerance.</p><pre><code class="language-julia hljs">sol_trapeze = solve(
     ocp;
     grid_size = 150,
     scheme = :trapeze,
@@ -201,7 +201,7 @@ nothing</code></pre><pre class="documenter-example-output"><code class="nohighli
    ├─ <span class="sgr1">Modeler</span>: <span class="sgr36"><span class="sgr1">adnlp</span></span>
    └─ <span class="sgr1">Solver</span>: <span class="sgr36"><span class="sgr1">ipopt</span></span> (tol = 1.0e-8)
 
-▫ This is Ipopt version 3.14.19, running with linear solver MUMPS 5.8.2.
+▫ This is Ipopt version 3.14.19, running with linear solver MUMPS 5.9.0.
 
 Number of nonzeros in equality constraint Jacobian...:     2405
 Number of nonzeros in inequality constraint Jacobian.:        0
@@ -218,39 +218,36 @@ Total number of inequality constraints...............:        0
         inequality constraints with only upper bounds:        0
 
 iter    objective    inf_pr   inf_du lg(mu)  ||d||  lg(rg) alpha_du alpha_pr  ls
-   0  1.0531741e+00 1.13e-01 2.04e-02   0.0 0.00e+00    -  0.00e+00 0.00e+00   0
-   1  9.7765283e-01 7.09e-03 1.15e-01  -6.0 2.10e-01    -  8.05e-01 1.00e+00h  1
-   2  1.2333540e+00 5.16e-04 4.05e-02  -6.7 2.56e-01    -  8.97e-01 1.00e+00h  1
-   3  1.0282352e+00 1.70e-03 2.22e-16  -2.5 2.45e-01    -  1.00e+00 1.00e+00f  1
-   4  1.0659368e+00 2.28e-04 1.00e-03  -3.5 2.69e-01    -  9.13e-01 1.00e+00h  1
-   5  1.0777498e+00 7.62e-05 4.55e-04  -4.4 2.36e-01    -  9.22e-01 1.00e+00h  1
-   6  1.0774887e+00 3.02e-05 3.05e-04  -5.3 2.42e-01    -  8.86e-01 1.00e+00h  1
-   7  1.0774104e+00 9.70e-06 1.04e-05  -5.5 2.28e-01    -  9.92e-01 1.00e+00h  1
-   8  1.0773749e+00 3.19e-06 2.22e-16  -6.4 2.17e-01    -  1.00e+00 1.00e+00h  1
-   9  1.0773769e+00 6.60e-07 6.52e-07  -7.4 1.55e-01    -  9.97e-01 1.00e+00h  1
-iter    objective    inf_pr   inf_du lg(mu)  ||d||  lg(rg) alpha_du alpha_pr  ls
-  10  1.0773832e+00 5.30e-08 2.22e-16  -8.7 5.36e-02    -  1.00e+00 1.00e+00h  1
-  11  1.0773838e+00 7.21e-10 2.22e-16 -11.0 7.57e-03    -  1.00e+00 1.00e+00h  1
+   0  3.4227974e+00 1.88e-01 6.77e-02   0.0 0.00e+00    -  0.00e+00 0.00e+00   0
+   1  3.2976116e+00 6.78e-02 6.82e-02  -6.0 2.59e-01    -  6.08e-01 6.38e-01h  1
+   2  3.8447320e+00 1.61e-03 3.35e-02  -2.5 5.57e-01    -  9.23e-01 1.00e+00h  1
+   3  3.4470943e+00 3.03e-03 1.91e-02  -2.5 4.90e-01    -  7.85e-01 1.00e+00f  1
+   4  3.4175502e+00 1.11e-03 1.15e-04  -3.0 2.64e-01    -  9.98e-01 1.00e+00h  1
+   5  3.4644438e+00 1.19e-04 9.63e-05  -4.3 1.16e-01    -  9.90e-01 1.00e+00h  1
+   6  3.4673952e+00 8.60e-06 9.63e-05  -5.7 9.47e-02    -  9.39e-01 1.00e+00h  1
+   7  3.4673944e+00 9.33e-07 1.75e-05  -6.4 8.99e-02    -  9.46e-01 1.00e+00h  1
+   8  3.4673932e+00 7.07e-08 9.60e-08  -7.2 7.64e-02    -  9.99e-01 1.00e+00h  1
+   9  3.4673934e+00 2.87e-09 2.66e-15  -8.8 3.33e-02    -  1.00e+00 1.00e+00h  1
 
-Number of Iterations....: 11
+Number of Iterations....: 9
 
                                    (scaled)                 (unscaled)
-Objective...............:   1.0773837561421777e+00    1.0773837561421777e+00
-Dual infeasibility......:   2.2204460492503131e-16    2.2204460492503131e-16
-Constraint violation....:   7.2079431312488396e-10    7.2079431312488396e-10
-Variable bound violation:   9.7066277238155863e-09    9.7066277238155863e-09
-Complementarity.........:   7.2858855889267902e-10    7.2858855889267902e-10
-Overall NLP error.......:   7.2858855889267902e-10    7.2858855889267902e-10
+Objective...............:   3.4673934263533672e+00    3.4673934263533672e+00
+Dual infeasibility......:   2.6645352591003757e-15    2.6645352591003757e-15
+Constraint violation....:   2.8711911181922289e-09    2.8711911181922289e-09
+Variable bound violation:   6.5271843485703585e-09    6.5271843485703585e-09
+Complementarity.........:   5.2688865211347940e-09    5.2688865211347940e-09
+Overall NLP error.......:   5.2688865211347940e-09    5.2688865211347940e-09
 
 
-Number of objective function evaluations             = 12
-Number of objective gradient evaluations             = 12
-Number of equality constraint evaluations            = 12
+Number of objective function evaluations             = 10
+Number of objective gradient evaluations             = 10
+Number of equality constraint evaluations            = 10
 Number of inequality constraint evaluations          = 0
-Number of equality constraint Jacobian evaluations   = 12
+Number of equality constraint Jacobian evaluations   = 10
 Number of inequality constraint Jacobian evaluations = 0
-Number of Lagrangian Hessian evaluations             = 11
-Total seconds in IPOPT                               = 2.678
+Number of Lagrangian Hessian evaluations             = 9
+Total seconds in IPOPT                               = 2.775
 
 EXIT: Optimal Solution Found.
 ▫ This is OptimalControl 2.0.4, solving with: <span class="sgr36"><span class="sgr1">collocation</span></span> → <span class="sgr36"><span class="sgr1">adnlp</span></span> → <span class="sgr36"><span class="sgr1">ipopt</span></span> (<span class="sgr35"><span class="sgr1">cpu</span></span>)
@@ -260,7 +257,7 @@ EXIT: Optimal Solution Found.
    ├─ <span class="sgr1">Modeler</span>: <span class="sgr36"><span class="sgr1">adnlp</span></span>
    └─ <span class="sgr1">Solver</span>: <span class="sgr36"><span class="sgr1">ipopt</span></span> (tol = 1.0e-8)
 
-▫ This is Ipopt version 3.14.19, running with linear solver MUMPS 5.8.2.
+▫ This is Ipopt version 3.14.19, running with linear solver MUMPS 5.9.0.
 
 Number of nonzeros in equality constraint Jacobian...:     1955
 Number of nonzeros in inequality constraint Jacobian.:        0
@@ -277,38 +274,41 @@ Total number of inequality constraints...............:        0
         inequality constraints with only upper bounds:        0
 
 iter    objective    inf_pr   inf_du lg(mu)  ||d||  lg(rg) alpha_du alpha_pr  ls
-   0  1.0531741e+00 2.06e-01 3.63e-02   0.0 0.00e+00    -  0.00e+00 0.00e+00   0
-   1  1.0013445e+00 1.83e-02 2.39e-01  -6.0 3.93e-01    -  6.95e-01 9.11e-01h  1
-   2  1.2328589e+00 6.01e-04 5.02e-02  -2.6 2.32e-01    -  9.08e-01 1.00e+00h  1
-   3  1.0286436e+00 4.25e-03 1.44e-02  -2.5 4.24e-01    -  8.98e-01 1.00e+00f  1
-   4  1.0276920e+00 6.90e-04 3.48e-03  -3.2 1.82e-01    -  9.18e-01 1.00e+00h  1
-   5  1.0467338e+00 3.01e-04 3.10e-05  -3.6 2.22e-01    -  9.97e-01 1.00e+00h  1
-   6  1.0457787e+00 6.15e-05 1.79e-06  -4.5 1.42e-01    -  9.99e-01 1.00e+00h  1
-   7  1.0455214e+00 2.75e-06 4.99e-07  -5.7 9.08e-02    -  9.98e-01 1.00e+00h  1
-   8  1.0455157e+00 4.70e-07 2.92e-08  -6.8 1.03e-01    -  1.00e+00 1.00e+00h  1
-   9  1.0455152e+00 5.54e-08 3.33e-16  -8.1 1.28e-01    -  1.00e+00 1.00e+00h  1
+   0  3.4227974e+00 4.08e-01 9.56e-02   0.0 0.00e+00    -  0.00e+00 0.00e+00   0
+   1  3.3783647e+00 2.92e-01 2.74e-01  -6.0 5.62e-01    -  3.78e-01 2.84e-01h  1
+   2  3.5999190e+00 9.38e-03 9.94e-02  -1.8 1.06e+00    -  8.71e-01 1.00e+00h  1
+   3  3.6574679e+00 3.86e-03 1.90e-02  -3.1 1.47e-01    -  8.01e-01 1.00e+00h  1
+   4  3.3089390e+00 3.17e-03 5.33e-03  -2.6 4.28e-01    -  9.08e-01 1.00e+00f  1
+   5  3.3859855e+00 5.97e-04 3.62e-03  -3.7 1.64e-01    -  9.26e-01 1.00e+00h  1
+   6  3.4030713e+00 1.46e-04 2.52e-03  -4.5 1.95e-01    -  8.68e-01 1.00e+00h  1
+   7  3.4033205e+00 2.63e-05 8.59e-05  -4.7 2.04e-01    -  9.84e-01 1.00e+00h  1
+   8  3.4031119e+00 1.18e-05 3.10e-06  -5.5 2.26e-01    -  9.96e-01 1.00e+00h  1
+   9  3.4030640e+00 3.82e-06 2.98e-05  -6.3 2.38e-01    -  9.95e-01 8.69e-01h  1
 iter    objective    inf_pr   inf_du lg(mu)  ||d||  lg(rg) alpha_du alpha_pr  ls
-  10  1.0455167e+00 1.15e-09 2.22e-16  -9.8 2.48e-02    -  1.00e+00 1.00e+00h  1
+  10  3.4030406e+00 1.65e-06 8.88e-16  -7.1 2.72e-01    -  1.00e+00 1.00e+00h  1
+  11  3.4030439e+00 2.12e-07 2.32e-07  -8.1 1.52e-01    -  9.97e-01 1.00e+00h  1
+  12  3.4030457e+00 1.80e-08 1.78e-15  -9.5 5.14e-02    -  1.00e+00 1.00e+00h  1
+  13  3.4030460e+00 2.97e-10 8.88e-16 -11.0 7.22e-03    -  1.00e+00 1.00e+00h  1
 
-Number of Iterations....: 10
+Number of Iterations....: 13
 
                                    (scaled)                 (unscaled)
-Objective...............:   1.0455166725224343e+00    1.0455166725224343e+00
-Dual infeasibility......:   2.2204460492503131e-16    2.2204460492503131e-16
-Constraint violation....:   1.1542808930897763e-09    1.1542808930897763e-09
-Variable bound violation:   7.9945459141583797e-09    7.9945459141583797e-09
-Complementarity.........:   1.2969842018960228e-09    1.2969842018960228e-09
-Overall NLP error.......:   1.2969842018960228e-09    1.2969842018960228e-09
+Objective...............:   3.4030459723334312e+00    3.4030459723334312e+00
+Dual infeasibility......:   8.8817841970012523e-16    8.8817841970012523e-16
+Constraint violation....:   2.9688651537185251e-10    2.9688651537185251e-10
+Variable bound violation:   9.9824071231324751e-09    9.9824071231324751e-09
+Complementarity.........:   2.5822714020376765e-10    2.5822714020376765e-10
+Overall NLP error.......:   2.9688651537185251e-10    2.9688651537185251e-10
 
 
-Number of objective function evaluations             = 11
-Number of objective gradient evaluations             = 11
-Number of equality constraint evaluations            = 11
+Number of objective function evaluations             = 14
+Number of objective gradient evaluations             = 14
+Number of equality constraint evaluations            = 14
 Number of inequality constraint evaluations          = 0
-Number of equality constraint Jacobian evaluations   = 11
+Number of equality constraint Jacobian evaluations   = 14
 Number of inequality constraint Jacobian evaluations = 0
-Number of Lagrangian Hessian evaluations             = 10
-Total seconds in IPOPT                               = 0.019
+Number of Lagrangian Hessian evaluations             = 13
+Total seconds in IPOPT                               = 0.024
 
 EXIT: Optimal Solution Found.
 ▫ This is OptimalControl 2.0.4, solving with: <span class="sgr36"><span class="sgr1">collocation</span></span> → <span class="sgr36"><span class="sgr1">adnlp</span></span> → <span class="sgr36"><span class="sgr1">ipopt</span></span> (<span class="sgr35"><span class="sgr1">cpu</span></span>)
@@ -318,7 +318,7 @@ EXIT: Optimal Solution Found.
    ├─ <span class="sgr1">Modeler</span>: <span class="sgr36"><span class="sgr1">adnlp</span></span>
    └─ <span class="sgr1">Solver</span>: <span class="sgr36"><span class="sgr1">ipopt</span></span> (tol = 1.0e-8)
 
-▫ This is Ipopt version 3.14.19, running with linear solver MUMPS 5.8.2.
+▫ This is Ipopt version 3.14.19, running with linear solver MUMPS 5.9.0.
 
 Number of nonzeros in equality constraint Jacobian...:     6005
 Number of nonzeros in inequality constraint Jacobian.:        0
@@ -335,38 +335,40 @@ Total number of inequality constraints...............:        0
         inequality constraints with only upper bounds:        0
 
 iter    objective    inf_pr   inf_du lg(mu)  ||d||  lg(rg) alpha_du alpha_pr  ls
-   0  1.0531741e+00 1.09e+00 1.36e-02   0.0 0.00e+00    -  0.00e+00 0.00e+00   0
-   1  1.0132754e+00 5.46e-02 2.56e-02  -1.2 1.02e+00    -  1.00e+00 1.00e+00h  1
-   2  1.0748459e+00 2.65e-04 2.24e-03  -3.1 6.16e-02    -  9.67e-01 1.00e+00h  1
-   3  1.0548595e+00 3.98e-04 3.98e-05  -3.8 1.01e-01    -  9.89e-01 1.00e+00h  1
-   4  1.0563443e+00 9.66e-05 2.82e-05  -4.6 1.74e-01    -  9.57e-01 1.00e+00h  1
-   5  1.0566220e+00 5.53e-05 2.22e-16  -5.5 2.22e-01    -  1.00e+00 1.00e+00h  1
-   6  1.0569066e+00 1.46e-05 1.25e-05  -6.8 1.34e-01    -  9.32e-01 1.00e+00h  1
-   7  1.0569141e+00 2.82e-06 2.81e-06  -7.3 1.42e-01    -  9.68e-01 1.00e+00h  1
-   8  1.0569140e+00 3.77e-07 2.22e-16  -8.1 1.44e-01    -  1.00e+00 1.00e+00h  1
-   9  1.0569139e+00 3.70e-08 4.08e-08  -9.3 1.56e-01    -  9.95e-01 1.00e+00h  1
+   0  3.4227974e+00 1.36e+00 3.44e-02   0.0 0.00e+00    -  0.00e+00 0.00e+00   0
+   1  3.3488784e+00 8.39e-02 4.59e-02  -6.0 1.36e+00    -  9.11e-01 1.00e+00h  1
+   2  3.4709577e+00 2.61e-04 5.45e-03  -3.1 1.22e-01    -  9.56e-01 1.00e+00h  1
+   3  3.4282674e+00 1.07e-03 6.52e-04  -3.8 1.73e-01    -  8.72e-01 1.00e+00h  1
+   4  3.4352258e+00 3.18e-04 8.17e-04  -4.6 2.07e-01    -  8.26e-01 1.00e+00h  1
+   5  3.4331725e+00 2.50e-04 4.83e-06  -4.5 4.18e-01    -  9.95e-01 1.00e+00h  1
+   6  3.4336483e+00 2.00e-05 7.32e-06  -5.0 2.16e-01    -  9.42e-01 1.00e+00h  1
+   7  3.4337942e+00 1.67e-05 3.04e-05  -7.0 1.66e-01    -  8.20e-01 9.76e-01h  1
+   8  3.4337960e+00 4.05e-06 2.12e-06  -6.4 1.55e-01    -  9.87e-01 1.00e+00h  1
+   9  3.4337899e+00 1.39e-06 6.50e-06  -7.3 1.57e-01    -  1.00e+00 8.27e-01h  1
 iter    objective    inf_pr   inf_du lg(mu)  ||d||  lg(rg) alpha_du alpha_pr  ls
-  10  1.0569141e+00 8.30e-10 2.22e-16 -10.7 3.32e-02    -  1.00e+00 1.00e+00h  1
+  10  3.4337877e+00 6.43e-07 8.88e-16  -8.3 1.62e-01    -  1.00e+00 1.00e+00h  1
+  11  3.4337886e+00 3.09e-08 6.66e-16  -9.7 5.05e-02    -  1.00e+00 1.00e+00h  1
+  12  3.4337886e+00 2.05e-10 1.22e-15 -11.0 5.10e-03    -  1.00e+00 1.00e+00h  1
 
-Number of Iterations....: 10
+Number of Iterations....: 12
 
                                    (scaled)                 (unscaled)
-Objective...............:   1.0569140979570872e+00    1.0569140979570872e+00
-Dual infeasibility......:   2.2204460492503131e-16    2.2204460492503131e-16
-Constraint violation....:   8.3035417777765907e-10    8.3035417777765907e-10
-Variable bound violation:   9.6176593356034346e-09    9.6176593356034346e-09
-Complementarity.........:   1.4777328333742125e-10    1.4777328333742125e-10
-Overall NLP error.......:   8.3035417777765907e-10    8.3035417777765907e-10
+Objective...............:   3.4337886468288636e+00    3.4337886468288636e+00
+Dual infeasibility......:   1.2212453270876722e-15    1.2212453270876722e-15
+Constraint violation....:   2.0515944498811223e-10    2.0515944498811223e-10
+Variable bound violation:   9.9708195033798575e-09    9.9708195033798575e-09
+Complementarity.........:   3.8397046141313027e-11    3.8397046141313027e-11
+Overall NLP error.......:   2.0515944498811223e-10    2.0515944498811223e-10
 
 
-Number of objective function evaluations             = 11
-Number of objective gradient evaluations             = 11
-Number of equality constraint evaluations            = 11
+Number of objective function evaluations             = 13
+Number of objective gradient evaluations             = 13
+Number of equality constraint evaluations            = 13
 Number of inequality constraint evaluations          = 0
-Number of equality constraint Jacobian evaluations   = 11
+Number of equality constraint Jacobian evaluations   = 13
 Number of inequality constraint Jacobian evaluations = 0
-Number of Lagrangian Hessian evaluations             = 10
-Total seconds in IPOPT                               = 4.120
+Number of Lagrangian Hessian evaluations             = 12
+Total seconds in IPOPT                               = 4.371
 
 EXIT: Optimal Solution Found.</code></pre><pre><code class="language-julia hljs">plt_gauss2 = plot(
     sol_gauss2;
@@ -374,7 +376,7 @@ EXIT: Optimal Solution Found.</code></pre><pre><code class="language-julia hljs"
     size = (800, 800),
 )
 
-plt_gauss2</code></pre><img src="direct-bde742a9.svg" alt="Example block output"/><h2 id="Comparison-of-the-controls"><a class="docs-heading-anchor" href="#Comparison-of-the-controls">Comparison of the controls</a><a id="Comparison-of-the-controls-1"></a><a class="docs-heading-anchor-permalink" href="#Comparison-of-the-controls" title="Permalink"></a></h2><p>We compare the controls obtained with the different schemes on the initial time interval.</p><pre><code class="language-julia hljs">u_trapeze(t) = control(sol_trapeze)(t)
+plt_gauss2</code></pre><img src="direct-e1dffea0.svg" alt="Example block output"/><h2 id="Comparison-of-the-controls"><a class="docs-heading-anchor" href="#Comparison-of-the-controls">Comparison of the controls</a><a id="Comparison-of-the-controls-1"></a><a class="docs-heading-anchor-permalink" href="#Comparison-of-the-controls" title="Permalink"></a></h2><p>We compare the controls obtained with the different schemes on the initial time interval.</p><pre><code class="language-julia hljs">u_trapeze(t) = control(sol_trapeze)(t)
 u_midpoint(t) = control(sol_midpoint)(t)
 u_gauss2(t) = control(sol_gauss2)(t)
 
@@ -409,7 +411,7 @@ plot!(
     linewidth = 2,
 )
 
-plt_controls</code></pre><img src="direct-41bcc9b5.svg" alt="Example block output"/><h2 id="Continuation-example"><a class="docs-heading-anchor" href="#Continuation-example">Continuation example</a><a id="Continuation-example-1"></a><a class="docs-heading-anchor-permalink" href="#Continuation-example" title="Permalink"></a></h2><p>We can also explicitly perform a continuation procedure by first solving a coarse problem and then refining the discretization.</p><pre><code class="language-julia hljs">sol_continuation = solve(
+plt_controls</code></pre><img src="direct-b975da20.svg" alt="Example block output"/><h2 id="Continuation-example"><a class="docs-heading-anchor" href="#Continuation-example">Continuation example</a><a id="Continuation-example-1"></a><a class="docs-heading-anchor-permalink" href="#Continuation-example" title="Permalink"></a></h2><p>We can also explicitly perform a continuation procedure by first solving a coarse problem and then refining the discretization.</p><pre><code class="language-julia hljs">sol_continuation = solve(
     ocp;
     grid_size = 50,
     scheme = :midpoint,
@@ -431,7 +433,7 @@ nothing</code></pre><pre class="documenter-example-output"><code class="nohighli
    ├─ <span class="sgr1">Modeler</span>: <span class="sgr36"><span class="sgr1">adnlp</span></span>
    └─ <span class="sgr1">Solver</span>: <span class="sgr36"><span class="sgr1">ipopt</span></span> (tol = 0.0001)
 
-▫ This is Ipopt version 3.14.19, running with linear solver MUMPS 5.8.2.
+▫ This is Ipopt version 3.14.19, running with linear solver MUMPS 5.9.0.
 
 Number of nonzeros in equality constraint Jacobian...:      655
 Number of nonzeros in inequality constraint Jacobian.:        0
@@ -448,34 +450,33 @@ Total number of inequality constraints...............:        0
         inequality constraints with only upper bounds:        0
 
 iter    objective    inf_pr   inf_du lg(mu)  ||d||  lg(rg) alpha_du alpha_pr  ls
-   0  1.0000000e-01 9.00e-01 6.02e-02   0.0 0.00e+00    -  0.00e+00 0.00e+00   0
-   1 -4.2756885e+00 1.46e+00 1.64e+00  -6.0 4.42e+00    -  6.14e-01 1.00e+00f  1
-   2 -2.0163348e+01 1.27e+00 8.19e-02  -0.9 1.61e+01    -  8.89e-01 1.00e+00f  1
-   3  1.0120114e+00 7.34e-03 6.83e-04  -1.7 2.12e+01    -  9.97e-01 1.00e+00h  1
-   4  9.7374775e-01 4.14e-03 3.70e-04  -2.4 2.83e-01    -  9.95e-01 1.00e+00h  1
-   5  9.5570291e-01 1.78e-03 6.89e-04  -3.2 2.78e-01    -  9.83e-01 1.00e+00h  1
-   6  9.4898339e-01 6.64e-04 1.03e-04  -3.9 2.83e-01    -  9.95e-01 1.00e+00h  1
-   7  9.4628588e-01 2.85e-04 5.19e-05  -4.7 3.51e-01    -  9.95e-01 1.00e+00h  1
-   8  9.4624329e-01 8.33e-05 1.65e-05  -5.6 1.93e-01    -  9.96e-01 1.00e+00h  1
+   0  1.0000000e-01 9.00e-01 7.19e-02   0.0 0.00e+00    -  0.00e+00 0.00e+00   0
+   1 -3.8757262e+00 2.03e+00 1.96e+00  -6.0 4.35e+00    -  4.92e-01 1.00e+00f  1
+   2 -2.6832028e+01 1.82e+00 7.22e-02  -0.8 2.56e+01    -  9.00e-01 1.00e+00f  1
+   3  3.2025438e+00 1.19e-02 8.90e-04  -1.7 3.00e+01    -  9.95e-01 1.00e+00h  1
+   4  3.1549430e+00 3.43e-03 3.41e-03  -2.7 1.98e-01    -  9.51e-01 1.00e+00h  1
+   5  3.1436918e+00 5.11e-04 2.10e-04  -3.4 1.56e-01    -  9.96e-01 1.00e+00h  1
+   6  3.1427332e+00 1.99e-04 1.12e-05  -4.3 1.67e-01    -  1.00e+00 1.00e+00h  1
+   7  3.1425296e+00 4.58e-05 8.88e-16  -5.4 1.89e-01    -  1.00e+00 1.00e+00h  1
 
-Number of Iterations....: 8
+Number of Iterations....: 7
 
                                    (scaled)                 (unscaled)
-Objective...............:   9.4624329267850060e-01    9.4624329267850060e-01
-Dual infeasibility......:   1.6511182589749179e-05    1.6511182589749179e-05
-Constraint violation....:   8.3319518470403864e-05    8.3319518470403864e-05
+Objective...............:   3.1425296476072222e+00    3.1425296476072222e+00
+Dual infeasibility......:   8.8817841970012523e-16    8.8817841970012523e-16
+Constraint violation....:   4.5802848910314609e-05    4.5802848910314609e-05
 Variable bound violation:   0.0000000000000000e+00    0.0000000000000000e+00
-Complementarity.........:   6.2463440129949279e-05    6.2463440129949279e-05
-Overall NLP error.......:   8.3319518470403864e-05    8.3319518470403864e-05
+Complementarity.........:   4.4255095127725693e-05    4.4255095127725693e-05
+Overall NLP error.......:   4.5802848910314609e-05    4.5802848910314609e-05
 
 
-Number of objective function evaluations             = 9
-Number of objective gradient evaluations             = 9
-Number of equality constraint evaluations            = 9
+Number of objective function evaluations             = 8
+Number of objective gradient evaluations             = 8
+Number of equality constraint evaluations            = 8
 Number of inequality constraint evaluations          = 0
-Number of equality constraint Jacobian evaluations   = 9
+Number of equality constraint Jacobian evaluations   = 8
 Number of inequality constraint Jacobian evaluations = 0
-Number of Lagrangian Hessian evaluations             = 8
+Number of Lagrangian Hessian evaluations             = 7
 Total seconds in IPOPT                               = 0.007
 
 EXIT: Optimal Solution Found.
@@ -486,7 +487,7 @@ EXIT: Optimal Solution Found.
    ├─ <span class="sgr1">Modeler</span>: <span class="sgr36"><span class="sgr1">adnlp</span></span>
    └─ <span class="sgr1">Solver</span>: <span class="sgr36"><span class="sgr1">ipopt</span></span> (tol = 1.0e-8)
 
-▫ This is Ipopt version 3.14.19, running with linear solver MUMPS 5.8.2.
+▫ This is Ipopt version 3.14.19, running with linear solver MUMPS 5.9.0.
 
 Number of nonzeros in equality constraint Jacobian...:     6005
 Number of nonzeros in inequality constraint Jacobian.:        0
@@ -503,41 +504,40 @@ Total number of inequality constraints...............:        0
         inequality constraints with only upper bounds:        0
 
 iter    objective    inf_pr   inf_du lg(mu)  ||d||  lg(rg) alpha_du alpha_pr  ls
-   0  9.4624329e-01 1.29e+00 2.13e-02   0.0 0.00e+00    -  0.00e+00 0.00e+00   0
-   1  1.8674680e+00 9.09e-02 5.39e-02  -6.0 1.23e+00    -  8.28e-01 1.00e+00h  1
-   2  2.8468288e+00 2.22e-03 7.11e-02  -2.9 9.79e-01    -  7.73e-01 1.00e+00h  1
-   3  1.0760491e+00 1.13e-01 5.44e-02  -2.2 1.77e+00    -  4.64e-01 1.00e+00f  1
-   4  1.0664008e+00 9.06e-03 4.58e-03  -2.6 2.64e-01    -  8.67e-01 1.00e+00h  1
-   5  1.0022250e+00 4.62e-03 5.61e-04  -3.1 5.52e-01    -  9.31e-01 1.00e+00h  1
-   6  1.0535202e+00 7.65e-04 1.37e-04  -3.6 3.06e-01    -  9.69e-01 1.00e+00h  1
-   7  1.0567774e+00 2.60e-04 9.01e-06  -4.4 1.75e-01    -  9.96e-01 1.00e+00h  1
-   8  1.0568698e+00 6.95e-05 8.73e-05  -6.5 1.34e-01    -  8.94e-01 1.00e+00h  1
-   9  1.0569135e+00 1.98e-05 1.02e-05  -6.3 1.34e-01    -  9.70e-01 1.00e+00h  1
+   0  3.1425296e+00 1.18e+00 3.08e-02   0.0 0.00e+00    -  0.00e+00 0.00e+00   0
+   1  3.4873362e+00 9.16e-02 5.14e-02  -6.0 1.15e+00    -  9.34e-01 1.00e+00h  1
+   2  3.6626396e+00 3.08e-03 1.20e-02  -2.6 1.75e-01    -  9.06e-01 1.00e+00h  1
+   3  3.3326399e+00 1.10e-02 8.88e-16  -2.8 3.79e-01    -  1.00e+00 1.00e+00h  1
+   4  3.4272081e+00 2.52e-03 6.66e-16  -3.5 5.13e-01    -  1.00e+00 1.00e+00h  1
+   5  3.4339425e+00 7.49e-04 9.33e-04  -5.6 3.01e-01    -  8.37e-01 1.00e+00h  1
+   6  3.4339417e+00 7.49e-05 2.39e-04  -5.0 1.89e-01    -  8.63e-01 1.00e+00h  1
+   7  3.4338322e+00 3.50e-05 1.10e-06  -5.6 1.98e-01    -  9.94e-01 1.00e+00h  1
+   8  3.4337945e+00 1.29e-05 1.59e-08  -6.4 1.81e-01    -  1.00e+00 1.00e+00h  1
+   9  3.4337895e+00 3.48e-06 2.49e-05  -7.4 1.71e-01    -  1.00e+00 7.60e-01h  1
 iter    objective    inf_pr   inf_du lg(mu)  ||d||  lg(rg) alpha_du alpha_pr  ls
-  10  1.0569140e+00 5.80e-06 9.23e-08  -7.1 1.35e-01    -  9.99e-01 1.00e+00h  1
-  11  1.0569139e+00 1.03e-06 4.44e-16  -8.0 1.42e-01    -  1.00e+00 1.00e+00h  1
-  12  1.0569138e+00 9.90e-08 1.03e-08  -9.2 1.73e-01    -  9.99e-01 1.00e+00h  1
-  13  1.0569141e+00 1.93e-09 2.22e-16 -10.6 3.90e-02    -  1.00e+00 1.00e+00h  1
+  10  3.4337876e+00 9.10e-07 7.22e-16  -8.3 1.66e-01    -  1.00e+00 1.00e+00h  1
+  11  3.4337886e+00 4.00e-08 5.00e-16  -9.6 4.88e-02    -  1.00e+00 1.00e+00h  1
+  12  3.4337886e+00 2.99e-10 6.66e-16 -11.0 5.39e-03    -  1.00e+00 1.00e+00h  1
 
-Number of Iterations....: 13
+Number of Iterations....: 12
 
                                    (scaled)                 (unscaled)
-Objective...............:   1.0569140938670514e+00    1.0569140938670514e+00
-Dual infeasibility......:   2.2204460492503131e-16    2.2204460492503131e-16
-Constraint violation....:   1.9252776560507723e-09    1.9252776560507723e-09
-Variable bound violation:   9.5609482553271619e-09    9.5609482553271619e-09
-Complementarity.........:   2.2261373523662643e-10    2.2261373523662643e-10
-Overall NLP error.......:   1.9252776560507723e-09    1.9252776560507723e-09
+Objective...............:   3.4337886467677308e+00    3.4337886467677308e+00
+Dual infeasibility......:   6.6613381477509392e-16    6.6613381477509392e-16
+Constraint violation....:   2.9887448071974632e-10    2.9887448071974632e-10
+Variable bound violation:   9.9708195033798575e-09    9.9708195033798575e-09
+Complementarity.........:   6.1520065842839209e-11    6.1520065842839209e-11
+Overall NLP error.......:   2.9887448071974632e-10    2.9887448071974632e-10
 
 
-Number of objective function evaluations             = 14
-Number of objective gradient evaluations             = 14
-Number of equality constraint evaluations            = 14
+Number of objective function evaluations             = 13
+Number of objective gradient evaluations             = 13
+Number of equality constraint evaluations            = 13
 Number of inequality constraint evaluations          = 0
-Number of equality constraint Jacobian evaluations   = 14
+Number of equality constraint Jacobian evaluations   = 13
 Number of inequality constraint Jacobian evaluations = 0
-Number of Lagrangian Hessian evaluations             = 13
-Total seconds in IPOPT                               = 0.066
+Number of Lagrangian Hessian evaluations             = 12
+Total seconds in IPOPT                               = 0.070
 
 EXIT: Optimal Solution Found.</code></pre><pre><code class="language-julia hljs">plt_continuation = plot(
     sol_continuation;
@@ -545,14 +545,7 @@ EXIT: Optimal Solution Found.</code></pre><pre><code class="language-julia hljs"
     size = (800, 800),
 )
 
-plt_continuation</code></pre><img src="direct-8eadb9a7.svg" alt="Example block output"/><h2 id="Reducing-control-chattering"><a class="docs-heading-anchor" href="#Reducing-control-chattering">Reducing control chattering</a><a id="Reducing-control-chattering-1"></a><a class="docs-heading-anchor-permalink" href="#Reducing-control-chattering" title="Permalink"></a></h2><p>Direct methods can sometimes produce oscillations in the control, especially near bang-bang arcs or when the discretization is coarse.</p><p>One way to reduce this numerical chattering is to add a small quadratic regularization term to the cost:</p><p class="math-container">\[J_\varepsilon(x,y,u)
-=
-\frac{1}{2}\int_0^T
-\left(x^2(t)+y^2(t)\right)
-\,\mathrm dt
-+
-\varepsilon
-\int_0^T u^2(t)\,\mathrm dt,\]</p><p>where <code>0 &lt; \varepsilon \ll 1</code>.</p><p>In the auxiliary formulation, this corresponds to replacing the cost-state dynamics by</p><p class="math-container">\[\dot c(t)
+plt_continuation</code></pre><img src="direct-bef3e6b4.svg" alt="Example block output"/><h2 id="Reducing-control-chattering"><a class="docs-heading-anchor" href="#Reducing-control-chattering">Reducing control chattering</a><a id="Reducing-control-chattering-1"></a><a class="docs-heading-anchor-permalink" href="#Reducing-control-chattering" title="Permalink"></a></h2><p>When the optimal control is bang-bang or involves a singular arc, direct methods inevitably produce rapid oscillations at the grid scale — the discretized control switches between its bounds to approximate an infinite switching frequency it cannot resolve.</p><p>A standard remedy is to add a small quadratic regularization term to the cost:</p><p>$</p><p>J<em>\varepsilon(x,y,u) = \frac{1}{2}\int</em>0^T \left(x^2(t)+y^2(t)\right)\mathrm{d}t</p><ul><li>\varepsilon \int_0^T u^2(t)\,\mathrm{d}t,</li></ul><p>$</p><p>where <span>$0 &lt; \varepsilon \ll 1$</span>. The penalty on <span>$u^2$</span> makes the Hamiltonian strictly concave in <span>$u$</span>, which regularizes the bang-bang structure and yields a smooth, numerically well-behaved control. The solution then converges to the original bang-bang optimal control as <span>$\varepsilon \to 0$</span>.</p><p>In the auxiliary formulation, this corresponds to replacing the cost-state dynamics by</p><p class="math-container">\[\dot c(t)
 =
 \frac{1}{2}\left(x^2(t)+y^2(t)\right)
 +
@@ -574,7 +567,7 @@ ocp_regularized = @def begin
     ṡ(t) == [
         0.5 * (x(t)^2 + y(t)^2) + ε * u(t)^2,
         u(t),
-        u(t) - y(t) / 2,
+        -u(t) - y(t) / 2,
     ]
 
     c(T) → min
@@ -595,7 +588,7 @@ nothing</code></pre><pre class="documenter-example-output"><code class="nohighli
    ├─ <span class="sgr1">Modeler</span>: <span class="sgr36"><span class="sgr1">adnlp</span></span>
    └─ <span class="sgr1">Solver</span>: <span class="sgr36"><span class="sgr1">ipopt</span></span> (tol = 1.0e-8)
 
-▫ This is Ipopt version 3.14.19, running with linear solver MUMPS 5.8.2.
+▫ This is Ipopt version 3.14.19, running with linear solver MUMPS 5.9.0.
 
 Number of nonzeros in equality constraint Jacobian...:     2405
 Number of nonzeros in inequality constraint Jacobian.:        0
@@ -612,34 +605,33 @@ Total number of inequality constraints...............:        0
         inequality constraints with only upper bounds:        0
 
 iter    objective    inf_pr   inf_du lg(mu)  ||d||  lg(rg) alpha_du alpha_pr  ls
-   0  1.0773838e+00 3.33e-03 2.01e-02   0.0 0.00e+00    -  0.00e+00 0.00e+00   0
-   1  1.0887151e+00 5.25e-06 2.45e-03  -6.0 1.13e-02    -  9.67e-01 1.00e+00h  1
-   2  1.0880872e+00 2.44e-06 1.10e-03  -7.5 5.35e-03    -  9.70e-01 1.00e+00h  1
-   3  1.0799207e+00 1.34e-04 2.22e-16  -3.6 4.18e-01    -  1.00e+00 1.00e+00f  1
-   4  1.0789016e+00 1.61e-05 3.74e-05  -4.3 2.20e-01    -  9.58e-01 1.00e+00h  1
-   5  1.0792319e+00 2.86e-06 2.22e-16  -5.4 9.28e-02    -  1.00e+00 1.00e+00h  1
-   6  1.0793628e+00 7.87e-08 1.64e-08  -7.4 1.54e-02    -  1.00e+00 1.00e+00h  1
-   7  1.0793665e+00 3.27e-11 2.22e-16 -11.0 3.14e-04    -  1.00e+00 1.00e+00h  1
+   0  3.4673934e+00 3.33e-03 6.83e-02   0.0 0.00e+00    -  0.00e+00 0.00e+00   0
+   1  3.4772518e+00 2.19e-05 1.73e-02  -6.0 2.39e-02    -  9.64e-01 1.00e+00h  1
+   2  3.4716115e+00 1.14e-05 8.45e-04  -7.4 1.90e-02    -  9.84e-01 1.00e+00h  1
+   3  3.4700449e+00 1.26e-06 1.69e-05  -4.8 2.69e-02    -  9.94e-01 1.00e+00h  1
+   4  3.4698659e+00 5.60e-07 1.78e-15  -6.4 4.10e-02    -  1.00e+00 1.00e+00h  1
+   5  3.4698926e+00 1.64e-09 2.37e-08 -11.0 2.16e-03    -  9.97e-01 1.00e+00h  1
+   6  3.4698926e+00 1.83e-14 8.88e-16 -11.0 7.40e-06    -  1.00e+00 1.00e+00h  1
 
-Number of Iterations....: 7
+Number of Iterations....: 6
 
                                    (scaled)                 (unscaled)
-Objective...............:   1.0793665366463014e+00    1.0793665366463014e+00
-Dual infeasibility......:   2.2204460492503131e-16    2.2204460492503131e-16
-Constraint violation....:   3.2721159115567389e-11    3.2721159115567389e-11
-Variable bound violation:   9.7211265703833760e-09    9.7211265703833760e-09
-Complementarity.........:   8.6114574986230013e-11    8.6114574986230013e-11
-Overall NLP error.......:   8.6114574986230013e-11    8.6114574986230013e-11
+Objective...............:   3.4698926366565801e+00    3.4698926366565801e+00
+Dual infeasibility......:   8.8817841970012523e-16    8.8817841970012523e-16
+Constraint violation....:   1.8318679906315083e-14    1.8318679906315083e-14
+Variable bound violation:   9.9757995197791161e-09    9.9757995197791161e-09
+Complementarity.........:   1.0114735855164315e-11    1.0114735855164315e-11
+Overall NLP error.......:   1.0114735855164315e-11    1.0114735855164315e-11
 
 
-Number of objective function evaluations             = 8
-Number of objective gradient evaluations             = 8
-Number of equality constraint evaluations            = 8
+Number of objective function evaluations             = 7
+Number of objective gradient evaluations             = 7
+Number of equality constraint evaluations            = 7
 Number of inequality constraint evaluations          = 0
-Number of equality constraint Jacobian evaluations   = 8
+Number of equality constraint Jacobian evaluations   = 7
 Number of inequality constraint Jacobian evaluations = 0
-Number of Lagrangian Hessian evaluations             = 7
-Total seconds in IPOPT                               = 2.583
+Number of Lagrangian Hessian evaluations             = 6
+Total seconds in IPOPT                               = 2.838
 
 EXIT: Optimal Solution Found.</code></pre><pre><code class="language-julia hljs">plt_regularized = plot(
     sol_regularized;
@@ -647,7 +639,7 @@ EXIT: Optimal Solution Found.</code></pre><pre><code class="language-julia hljs"
     size = (800, 800),
 )
 
-plt_regularized</code></pre><img src="direct-74786956.svg" alt="Example block output"/><p>We now compare the regularized control with the controls obtained before.</p><pre><code class="language-julia hljs">u_regularized(t) = control(sol_regularized)(t)
+plt_regularized</code></pre><img src="direct-793f7282.svg" alt="Example block output"/><p>We now compare the regularized control with the controls obtained before.</p><pre><code class="language-julia hljs">u_regularized(t) = control(sol_regularized)(t)
 
 plt_regularized_control = plot(
     u_trapeze,
@@ -680,4 +672,4 @@ plot!(
     linewidth = 2.5,
 )
 
-plt_regularized_control</code></pre><img src="direct-2ee0cfbb.svg" alt="Example block output"/><p>The regularized problem is not exactly the same optimal control problem, since the objective has been modified. However, for small values of <code>\varepsilon</code>, it is often useful as a numerical device to obtain smoother controls or better warm starts.</p></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="index.html">« Introduction</a><a class="docs-footer-nextpage" href="indirect.html">Indirect method &amp; turnpike property »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.17.0 on <span class="colophon-date" title="Friday 19 June 2026 11:17">Friday 19 June 2026</span>. Using Julia version 1.12.6.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
+plt_regularized_control</code></pre><img src="direct-f3283f23.svg" alt="Example block output"/><div class="admonition is-info" id="Note-14c05593f35561eb"><header class="admonition-header">Note<a class="admonition-anchor" href="#Note-14c05593f35561eb" title="Permalink"></a></header><div class="admonition-body"><p>The regularized problem is a perturbation of the original — its solution differs from the true bang-bang control, but converges to it as ε → 0. In practice, it is used either as a smoother when the bang-bang structure makes the direct solve unstable, or as a warm start for a subsequent solve at ε = 0.</p></div></div></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="index.html">« Introduction</a><a class="docs-footer-nextpage" href="indirect.html">Indirect method &amp; turnpike property »</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.17.0 on <span class="colophon-date" title="Friday 26 June 2026 13:19">Friday 26 June 2026</span>. Using Julia version 1.12.6.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
