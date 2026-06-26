@@ -1,5 +1,4 @@
 name: Documentation
-
 on:
   push:
     branches:
@@ -10,3 +9,5 @@ on:
 jobs:
   call:
     uses: control-toolbox/CTActions/.github/workflows/documentation.yml@main
+    permissions:
+      contents: write

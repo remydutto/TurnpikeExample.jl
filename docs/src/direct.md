@@ -1,9 +1,6 @@
 # Direct methods
 
-We now solve the turnpike optimal control problem using a direct transcription method.
-The continuous-time problem is discretized on a time grid, and the resulting finite-dimensional nonlinear programming problem is solved numerically.
-
-Recall that the problem is
+Consider the following optimal control problem:
 
 ```math
 \left\{
@@ -17,7 +14,7 @@ J(x,y,u)
 \dot x(t) = u(t),
 \\[0.5em]
 
-\displaystyle \dot y(t) = u(t) - \frac{y(t)}{2},
+\displaystyle \dot y(t) =- u(t) - \frac{y(t)}{2},
 \\[0.5em]
 
 -M \leq u(t) \leq M,
@@ -45,14 +42,6 @@ u - \frac{y}{2} = 0
 \right\}.
 ```
 
-Hence the static solution is
-
-```math
-(x^\star, y^\star, u^\star) = (0,0,0).
-```
-
-For large final time `T`, we expect the optimal trajectory to display the turnpike property: it rapidly approaches the static equilibrium, remains close to it for most of the time interval, and then leaves it to satisfy the terminal constraint.
-
 ## Packages
 
 ```@example main
@@ -63,7 +52,7 @@ using Plots
 
 ## Auxiliary formulation
 
-To use a terminal cost, we introduce an auxiliary state `c` such that
+To reduce the optimal control problem to a Mayer form, we introduce an auxiliary state `c` such that
 
 ```math
 \dot c(t)
@@ -115,15 +104,10 @@ F_1(s)
 \\
 1
 \\
-1
+-1
 \end{pmatrix}.
 ```
 
-Notice that the last component of `F_1` is `1` because the dynamics is
-
-```math
-\dot y(t) = u(t) - \frac{y(t)}{2}.
-```
 
 ## Problem data
 
@@ -149,7 +133,7 @@ F0(s) = [
 F1(s) = [
     0.0,
     1.0,
-    1.0,
+    -1.0,
 ]
 
 nothing
@@ -157,7 +141,7 @@ nothing
 
 ## OCP definition
 
-We define the optimal control problem using the `OptimalControl.jl` DSL.
+We define the optimal control problem as follows:
 
 ```@example main
 ocp = @def begin
@@ -201,6 +185,14 @@ plt_direct = plot(
 plt_direct
 ```
 
+!!! warning "Control chattering"
+    The control exhibits **chattering**: it switches infinitely fast between its bounds
+    on a set of positive measure. This is consistent with a singular arc structure,
+    where the Pontryagin maximum principle fails to determine the optimal control
+    uniquely from the sign of the switching function.
+
+
+
 ## Integration schemes and continuation
 
 Direct methods rely on a discretization of the dynamics on a time grid
@@ -235,7 +227,7 @@ N_1 < \cdots < N_k,
 \varepsilon_1 > \cdots > \varepsilon_k.
 ```
 
-We now compare three discretization schemes.
+We now compare three discretization schemes for a fixed grid size and tolerance.
 
 ```@example main
 sol_trapeze = solve(
@@ -353,22 +345,22 @@ plt_continuation
 
 ## Reducing control chattering
 
-Direct methods can sometimes produce oscillations in the control, especially near bang-bang arcs or when the discretization is coarse.
+When the optimal control is bang-bang or involves a singular arc, direct methods
+inevitably produce rapid oscillations at the grid scale — the discretized control
+switches between its bounds to approximate an infinite switching frequency it cannot resolve.
 
-One way to reduce this numerical chattering is to add a small quadratic regularization term to the cost:
+A standard remedy is to add a small quadratic regularization term to the cost:
 
-```math
+$$
 J_\varepsilon(x,y,u)
-=
-\frac{1}{2}\int_0^T
-\left(x^2(t)+y^2(t)\right)
-\,\mathrm dt
-+
-\varepsilon
-\int_0^T u^2(t)\,\mathrm dt,
-```
+= \frac{1}{2}\int_0^T \left(x^2(t)+y^2(t)\right)\mathrm{d}t
++ \varepsilon \int_0^T u^2(t)\,\mathrm{d}t,
+$$
 
-where `0 < \varepsilon \ll 1`.
+where $0 < \varepsilon \ll 1$. The penalty on $u^2$ makes the Hamiltonian strictly
+concave in $u$, which regularizes the bang-bang structure and yields a smooth,
+numerically well-behaved control. The solution then converges to the original
+bang-bang optimal control as $\varepsilon \to 0$.
 
 In the auxiliary formulation, this corresponds to replacing the cost-state dynamics by
 
@@ -399,7 +391,7 @@ ocp_regularized = @def begin
     ṡ(t) == [
         0.5 * (x(t)^2 + y(t)^2) + ε * u(t)^2,
         u(t),
-        u(t) - y(t) / 2,
+        -u(t) - y(t) / 2,
     ]
 
     c(T) → min
@@ -469,5 +461,8 @@ plot!(
 plt_regularized_control
 ```
 
-The regularized problem is not exactly the same optimal control problem, since the objective has been modified.
-However, for small values of `\varepsilon`, it is often useful as a numerical device to obtain smoother controls or better warm starts.
+!!! note
+    The regularized problem is a perturbation of the original — its solution differs
+    from the true bang-bang control, but converges to it as ε → 0. In practice, it
+    is used either as a smoother when the bang-bang structure makes the direct solve
+    unstable, or as a warm start for a subsequent solve at ε = 0.

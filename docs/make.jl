@@ -13,7 +13,7 @@ cp(
     force=true,
 )
 
-repo_url = "github.com/remydutto/TurnpikeExample.jl"
+repo_url = "github.com/AnasXbouali/TurnpikeExample.jl"
 
 makedocs(;
     draft=false, # if draft is true, then the julia code from .md is not executed
