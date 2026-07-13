@@ -10,7 +10,7 @@ The TurnpikeExample.jl repo is part of the [control-toolbox ecosystem](https://g
 
 | **Category** | **Badge** |
 |-----------------------|-----------|
-| **Documentation** | [![Stable Docs](https://img.shields.io/badge/docs-stable-blue.svg)](https://remydutto.github.io/TurnpikeExample.jl/stable/) [![Dev Docs](https://img.shields.io/badge/docs-dev-8A2BE2.svg)](https://remydutto.github.io/TurnpikeExample.jl/dev/) |
+| **Documentation** | [![Stable Docs](https://img.shields.io/badge/docs-stable-blue.svg)](https://remydutto.github.io/TurnpikeExample.jl/stable/) [![Dev Docs](https://img.shields.io/badge/docs-dev-8A2BE2.svg)](https://remydutto.github.io/TurnpikeExample.jl/dev/) [![Ask DeepWiki](https://deepwiki.com/badge.svg)](https://deepwiki.com/remydutto/TurnpikeExample.jl) |
 | **CI / Build** | [![Build Status](https://github.com/remydutto/TurnpikeExample.jl/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/remydutto/TurnpikeExample.jl/actions/workflows/CI.yml?query=branch%3Amain) |
 | **Test Coverage** | [![Coverage](https://codecov.io/gh/remydutto/TurnpikeExample.jl/branch/main/graph/badge.svg)](https://codecov.io/gh/remydutto/TurnpikeExample.jl) |
 | **Release / Version** | [![Release](https://img.shields.io/github/v/release/remydutto/TurnpikeExample.jl.svg)](https://github.com/remydutto/TurnpikeExample.jl/releases) |
