@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><title>Indirect method &amp; turnpike property · TurnpikeExample</title><meta name="title" content="Indirect method &amp; turnpike property · TurnpikeExample"/><meta property="og:title" content="Indirect method &amp; turnpike property · TurnpikeExample"/><meta property="twitter:title" content="Indirect method &amp; turnpike property · TurnpikeExample"/><meta name="description" content="Documentation for TurnpikeExample."/><meta property="og:description" content="Documentation for TurnpikeExample."/><meta property="twitter:description" content="Documentation for TurnpikeExample."/><script data-outdated-warner src="assets/warner.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/lato-font/3.0.0/css/lato-font.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/juliamono/0.050/juliamono.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/fontawesome.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/solid.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/brands.min.css" rel="stylesheet" type="text/css"/><link href="https://cdnjs.cloudflare.com/ajax/libs/KaTeX/0.16.8/katex.min.css" rel="stylesheet" type="text/css"/><script>documenterBaseURL="."</script><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" data-main="assets/documenter.js"></script><script src="search_index.js"></script><script src="siteinfo.js"></script><script src="../versions.js"></script><link class="docs-theme-link" rel="stylesheet" type="text/css" href="assets/themes/catppuccin-mocha.css" data-theme-name="catppuccin-mocha"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="assets/themes/catppuccin-macchiato.css" data-theme-name="catppuccin-macchiato"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="assets/themes/catppuccin-frappe.css" data-theme-name="catppuccin-frappe"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="assets/themes/catppuccin-latte.css" data-theme-name="catppuccin-latte"/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="assets/themes/documenter-dark.css" data-theme-name="documenter-dark" data-theme-primary-dark/><link class="docs-theme-link" rel="stylesheet" type="text/css" href="assets/themes/documenter-light.css" data-theme-name="documenter-light" data-theme-primary/><script src="assets/themeswap.js"></script><link href="https://control-toolbox.org/assets/css/documentation.css" rel="stylesheet" type="text/css"/><script src="https://control-toolbox.org/assets/js/documentation.js"></script></head><body><div id="documenter"><nav class="docs-sidebar"><div class="docs-package-name"><span class="docs-autofit"><a href="index.html">TurnpikeExample</a></span></div><button class="docs-search-query input is-rounded is-small is-clickable my-2 mx-auto py-1 px-2" id="documenter-search-query">Search docs (Ctrl + /)</button><ul class="docs-menu"><li><a class="tocitem" href="index.html">Introduction</a></li><li><a class="tocitem" href="direct.html">Direct method</a></li><li class="is-active"><a class="tocitem" href="indirect.html">Indirect method &amp; turnpike property</a><ul class="internal"><li><a class="tocitem" href="#Problem-definition"><span>Problem definition</span></a></li><li><a class="tocitem" href="#Indirect-framework"><span>Indirect framework</span></a></li><li><a class="tocitem" href="#Indirect-resolution"><span>Indirect resolution</span></a></li><li><a class="tocitem" href="#Turnpike-property"><span>Turnpike property</span></a></li></ul></li></ul><div class="docs-version-selector field has-addons"><div class="control"><span class="docs-label button is-static is-size-7">Version</span></div><div class="docs-selector control is-expanded"><div class="select is-fullwidth is-size-7"><select id="documenter-version-selector"></select></div></div></div></nav><div class="docs-main"><header class="docs-navbar"><a class="docs-sidebar-button docs-navbar-link fa-solid fa-bars is-hidden-desktop" id="documenter-sidebar-button" href="#"></a><nav class="breadcrumb"><ul class="is-hidden-mobile"><li class="is-active"><a href="indirect.html">Indirect method &amp; turnpike property</a></li></ul><ul class="is-hidden-tablet"><li class="is-active"><a href="indirect.html">Indirect method &amp; turnpike property</a></li></ul></nav><div class="docs-right"><a class="docs-navbar-link" href="https://github.com/remydutto/TurnpikeExample.jl" title="View the repository on GitHub"><span class="docs-icon fa-brands"></span><span class="docs-label is-hidden-touch">GitHub</span></a><a class="docs-settings-button docs-navbar-link fa-solid fa-gear" id="documenter-settings-button" href="#" title="Settings"></a><a class="docs-article-toggle-button fa-solid fa-chevron-up" id="documenter-article-toggle-button" href="javascript:;" title="Collapse all docstrings"></a></div></header><article class="content" id="documenter-page"><h2 id="Problem-definition"><a class="docs-heading-anchor" href="#Problem-definition">Problem definition</a><a id="Problem-definition-1"></a><a class="docs-heading-anchor-permalink" href="#Problem-definition" title="Permalink"></a></h2><p>Recall that the optimal control problem we are considering is:</p><p class="math-container">\[    \left\{ \begin{array}{ll}
+    \displaystyle \min_{x,u} J(x,y,u) \coloneqq \frac{1}{2}\int_{0}^{T} \big(x^2(t) + y^2(t)\big) ~\mathrm dt \\[1em]
+    \text{s.c.}~\dot x(t) = u(t), &amp; t\in [t_0, t_f]~\mathrm{a.e.}, \\[0.5em]
+    \displaystyle \phantom{\mathrm{s.c.}~}\dot y(t) = - u(t) - \frac{y(t)}{2}, &amp; t\in [t_0, t_f]~\mathrm{a.e.}, \\[0.5em]
+    \phantom{\mathrm{s.c.}~} -M \leq u(t) \leq M, &amp; t\in [t_0, t_f], \\[0.5em]
+    \phantom{\mathrm{s.c.}~} \big(x(0), y(0)\big) = (1, -0.5), \quad \big(x(T), y(T)\big) = (0.5, 0.5),
+    \end{array} \right.\]</p><p>with <span>$M&gt;0$</span> and <span>$T&gt;0$</span>. </p><p>This optimal control problem is associated to the stationary optimization problem </p><p class="math-container">\[    \min_{(x,y,u)} \big \{  x^2 + y^2 \mid (x,y,u) \in \mathbb R \times \mathbb R \times [-M, M], - u = u - \frac{y}{2} = 0 \big\}.\]</p><p>The static solution is thus given by <span>$(x^\star, y^\star, u^\star) = (0, 0, 0)$</span>. This solution corresponds to the static equilibrium <span>$(x,y,u)$</span> which minimizes the cost <span>$J(x,y,u)$</span> under the control constraint <span>$|u|\leq M$</span>. Our goal is to numerically show that this problem has the <code>turnpike</code> property, i.e. if the final time <span>$T$</span> is large enough, the optimal trajectory has the following form : starting from the initial state <span>$(x(0), y(0)) = (1, -0.5)$</span>, the trajectory try to reach as fast as possible the static equilibrium <span>$(x^\star, y^\star, u^\star) = (0, 0, 0)$</span> and to stay close to it until it has to leave it to reach the final state <span>$(x(T), y(T)) = (0.5, 0.5)$</span>.</p><div class="admonition is-info" id="Main-goals-b922c87482195991"><header class="admonition-header">Main goals<a class="admonition-anchor" href="#Main-goals-b922c87482195991" title="Permalink"></a></header><div class="admonition-body"><p>Solve the optimal control problem using the indirect multiple shooting method, and highlight the turnpike property by using a continuation with respect to the final time <span>$T$</span>.</p></div></div><p>To do this, let us start by importing the needed package for this page, and defining the optimal control problem. </p><pre><code class="language-julia hljs"># Import required packages for optimal control analysis
+using Plots                                 # For plotting and visualization
+using OptimalControl                        # Main package for optimal control problems
+using NLPModelsIpopt                        # Interface for Ipopt nonlinear solver
+using OrdinaryDiffEq                        # For solving differential equations
+using MINPACK                               # For nonlinear equation solving (shooting method)
+using DifferentiationInterface              # For automatic differentiation
+using ForwardDiff                           # Forward mode automatic differentiation
+using Ipopt, Optimization, OptimizationMOI  # Additional optimization tools
+
+M = 1.
+s0 = [0., 1, -0.5]
+xT = 0.5; yT = 0.5
+
+F0(s) = [
+    0.5*(s[2]^2 + s[3]^2);
+    0;
+    -s[3]/2
+]
+
+F1(s) = [
+    0;
+    1;
+    -1
+]
+
+# Define the optimal control problem using OptimalControl.jl DSL
+ocp(T) = @def begin
+    t ∈ [0, T], time                                # Time
+    s = (c, x, y) ∈ R³, state                       # State
+    u ∈ R, control                                  # Control
+    -M ≤ u(t) ≤ M                                   # Control&#39;s constraint
+    s(0) == s0                                      # Initial state
+    x(T) == xT                                      # Final state
+    y(T) == yT                                      # Final state
+    ṡ(t) == F0(s(t)) + u(t)*F1(s(t))                # Dynamics
+    c(T) → min                                      # Cost
+end</code></pre><div class="admonition is-info" id="Note-e73bb1853cf2ec39"><header class="admonition-header">Note<a class="admonition-anchor" href="#Note-e73bb1853cf2ec39" title="Permalink"></a></header><div class="admonition-body"><p>The optimal control problem parametrized with the time horizon <code>T</code> that can be adjusted in order to study the turnpike property.</p></div></div><h2 id="Indirect-framework"><a class="docs-heading-anchor" href="#Indirect-framework">Indirect framework</a><a id="Indirect-framework-1"></a><a class="docs-heading-anchor-permalink" href="#Indirect-framework" title="Permalink"></a></h2><p>Denoting <span>$s = (c, x, y)$</span> the augmented state, and <span>$p = (p_c, p_x, p_y)$</span> the augmented costate, the pseudo-Hamiltonian is given by </p><p class="math-container">\[H(s, p, u) = p_c \frac{1}{2}(x^2 + y^2) + p_x u + p_y (u - \frac{y}{2}).\]</p><p>Since the state dynamic is linear with respect to the control </p><p class="math-container">\[\dot s(t) = F_0(s(t)) + u(t) F_1(s(t)) \quad \text{for all } t \in [0, T]\]</p><p>where </p><p class="math-container">\[F_0(s) = \begin{pmatrix} \frac{1}{2}(x^2 + y^2) \\ 0 \\ -\frac{y}{2} \end{pmatrix} 
+\quad \text{and} \quad
+F_1(s) = \begin{pmatrix} 0 \\ 1 \\ -1 \end{pmatrix},\]</p><p>the pseudo-Hamiltonian is linear with respect to the control and can be written as </p><p class="math-container">\[H(s, p, u) = H_0(s, p) + u \, H_1(s, p) \]</p><p>where </p><p class="math-container">\[H_0(s, p) = \langle p \mid F_0(s) \rangle \quad \text{and} \quad H_1(s, p) = \langle p \mid F_1(s) \rangle.\]</p><p>Thanks to the differential geometry tools provided by <code>OptimalControl.jl</code> described in the <a href="https://control-toolbox.org/OptimalControl.jl/stable/manual-differential-geometry.html">documentation</a>, the two Hamitonians <span>$H_0$</span> and <span>$H_1$</span> can be directly defined as the lift of the vector fields <span>$F_0$</span> and <span>$F_1$</span>. </p><pre><code class="language-julia hljs"># Lift into (x,λ) space
+H0 = Lift(F0)
+H1 = Lift(F1)
+
+# Pseudo-Hamiltonian
+H(s,p,u) = H0(s,p) + u*H1(s,p)</code></pre><p>Thanks to the maximization condition provided by the Pontryagin maximum principle, the optimal control has to maximize the pseudo-Hamiltonian for almost all <span>$t \in [0, T]$</span>.</p><p class="math-container">\[u(t) \in \arg\max_{w \in [-M, M]} H_0(s(t), p(t)) + w H_1(s(t), p(t)). \]</p><p>The optimal control is therefore given for almost all <span>$t \in [0, T]$</span> by </p><p class="math-container">\[u(t) \begin{cases}
+    = M &amp; \text{if }\phi(t) &gt; 0 \\
+    = -M &amp; \text{if }\phi(t) &lt; 0 \\
+    \in [-M, M] &amp; \text{if }\phi(t) = 0
+\end{cases}\]</p><p>where <span>$\phi(t) = H_1(s(t), p(t))$</span> is the commutation function. A singular arc corresponds to a time interval where <span>$\phi(t) = 0$</span>. During singular arc, one has </p><p class="math-container">\[\dot \phi(t) =  \{ H_0, H_1 \}(s(t), p(t)) \coloneqq H_{01}(s(t), p(t)) = 0\]</p><p>and </p><p class="math-container">\[\begin{align*}
+\ddot \phi(t) &amp;= \{H_0, H_{01} \}(s(t), p(t)) + u(t) \{H_1, H_{01} \}(s(t), p(t)) \\
+&amp;= H_{001}(s(t), p(t)) + u(t) H_{101}(s(t), p(t)) = 0,
+\end{align*}\]</p><p>where <span>$\{F, G\}(s, p) = \langle \nabla_s F(s, p), \nabla_p G(s, p) \rangle - \langle \nabla_p F(s, p), \nabla_s G(s, p) \rangle$</span> denoted the <a href="https://en.wikipedia.org/wiki/Poisson_bracket">Poisson bracket</a> of the two Hamiltonians <span>$H_0$</span> and <span>$H_1$</span>. Please refer to <a href="https://control-toolbox.org/Tutorials.jl/stable/tutorial-goddard.html">this tutorial</a> for more details about the Poisson bracket and its origin.</p><p>Considering that we have a singular arc of the first order (i.e. <span>$H_{101}(s(t), p(t)) \not = 0$</span> during singular arcs), the singular control is given by </p><p class="math-container">\[u(t) = u_s(s(t), p(t)) = -\frac{H_{001}(s(t), p(t))}{H_{101}(s(t), p(t))}\cdot\]</p><p>Again, thanks to the differential geometry tools provided by <code>OptimalControl.jl</code> described in the <a href="https://control-toolbox.org/OptimalControl.jl/stable/manual-differential-geometry.html">documentation</a>, one can use the <code>@Lie</code> macro to compute the Poisson brackets and define the singular control.</p><pre><code class="language-julia hljs"># Lie bracket
+H01  = @Lie {H0, H1}
+H001 = @Lie {H0, H01}
+H101 = @Lie {H1, H01}
+
+# Singular control
+us(s, p) = -H001(s, p) / H101(s, p)</code></pre><h2 id="Indirect-resolution"><a class="docs-heading-anchor" href="#Indirect-resolution">Indirect resolution</a><a id="Indirect-resolution-1"></a><a class="docs-heading-anchor-permalink" href="#Indirect-resolution" title="Permalink"></a></h2><p>Thanks to the resolution by direct method, the structure of the solution is given by </p><p class="math-container">\[u(t) = 
+    \begin{cases}
+    -M &amp; \text{if } t \in [0, t_1], \\
+    u_s(s(t), p(t)) &amp; \text{if } t \in ]t_1, t_2], \\
+    - M &amp; \text{if } t \in ]t_2, T],
+    \end{cases}\]</p><p>with <span>$0 &lt; t_1 &lt; t_2 &lt; T$</span>. We say that the control is <code>Bang-Singular-Bang</code>, and one suppose that the solution has this structure for all <span>$T&gt;0$</span> large enough. Moreover, one suppose that the solution are normal (i.e. <span>$p_c &lt; 0$</span>), and we fix <span>$p_c = -1$</span> in the following. Thanks to the boundary conditions given by the problem and by the transversality conditions of the Pontryagin maximum principle, we can define the shooting function associated to the optimal structure we have determined. This shooting function has 4 components, corresponding to the 4 unknowns <span>$p_x(0)$</span>, <span>$p_y(0)$</span>, <span>$t_1$</span> and <span>$t_2$</span>, and the four following equations:</p><p class="math-container">\[\begin{cases}
+x(T) - 0.5 = 0, \\
+y(T) = 0, \\
+H_1(s(t_1), p(t_1)) = 0, \\
+H_01(s(t_1), p(t_1)) = 0.
+\end{cases}\]</p><p>To compute the flow of the state and costate system, we use the <code>flow</code> function from <code>OptimalControl.jl</code> associated to the three structure, and construct the function <code>shoot!</code>. We use automatic differentiation thanks to <code>ForwardDiff.jl</code> package to compute the Jacobian of the shooting function, and we use direct method to obtain a good initial guess for the solver. Here is a comparison of the direct and indirect solutions for <span>$T = 10$</span>. </p><pre><code class="language-julia hljs">function sol(T)
+    # Solve the optimal control problem using direct method (collocation)
+    direct_sol = solve(ocp(T), display=false)
+    # Flows
+    ϕ0 = Flow(ocp(T), (s,p) -&gt; -1)
+    ϕ1 = Flow(ocp(T), (s,p) -&gt; +1)
+    ϕs = Flow(ocp(T), (s,p) -&gt; us(s,p))
+
+    # Shooting function
+    function shoot!(S, ξ)
+        px, py, t1, t2 = ξ
+        s1, p1 = ϕ0(0, s0, [-1, px, py], t1)
+        s2, p2 = ϕs(t1, s1, p1, t2)
+        sf, pf = ϕ0(t2, s2, p2, T)
+
+        S[1] = sf[2] - xT
+        S[2] = sf[3] - yT
+        S[3] = H1(s1, p1)
+        S[4] = H01(s1, p1)
+    end
+
+    # Jacobian of the shooting function
+    jshoot! = (js, ξ) -&gt; jacobian!(shoot!, similar(ξ), js, AutoForwardDiff(), ξ)
+
+    # Initial guess for indirect method
+    p = costate(direct_sol)
+    time = time_grid(direct_sol)
+    u = control(direct_sol)
+
+    p0 = p(0)
+    η = 1e-3
+    time_ = time[ u.(time) .≥ -1+η ]
+    t1 = time_[1]; t2 = time_[end]
+    ξ = [p0[2:3]..., t1, t2]
+
+    # Resolution of S(ξ) = 0
+    indirect_sol = fsolve(shoot!, jshoot!, ξ)
+
+    px0, py0, t1, t2 = indirect_sol.x
+    p0 = [-1, px0, py0]
+    ϕ = ϕ0 * (t1, ϕs) * (t2, ϕ0)
+    flow_sol = ϕ((0, T), s0, p0; saveat=range(0, T, 1000))
+
+    return direct_sol, indirect_sol, flow_sol
+end
+
+T = 10.
+direct_sol, sol_10, flow_10 = sol(T)
+
+# Plot
+plot(direct_sol, label=&quot;direct&quot;, size = (800, 800))
+plot!(flow_10, label=&quot;indirect&quot;)</code></pre><img src="indirect-ba2be8f6.svg" alt="Example block output"/><h2 id="Turnpike-property"><a class="docs-heading-anchor" href="#Turnpike-property">Turnpike property</a><a id="Turnpike-property-1"></a><a class="docs-heading-anchor-permalink" href="#Turnpike-property" title="Permalink"></a></h2><p>To highlight that the studied optimal control problem has the turnpike property, we compare the indirect solutions for different values of <span>$T$</span>. We choose to plot the solutions for <span>$T \in \{10, 20, 50\}$</span>. Thanks to the <code>control-toolbox</code> ecosystem, we can easily compute the solutions and plot them on the same plot with a normalized time thanks by simply giving the keyword argument <code>time=:normalize</code> to the <code>plot</code> function.</p><pre><code class="language-julia hljs"># Compute solutions for different values of T
+_, sol_20, flow_20 = sol(20)
+_, sol_50, flow_50 = sol(50)
+
+# Plot
+plt = plot(flow_10; time=:normalize, label = &quot;T=10&quot;, size = (800, 800))
+plot!(plt, flow_20; time=:normalize, label = &quot;T=20&quot;)
+plot!(plt, flow_50; time=:normalize, label = &quot;T=50&quot;)
+for i ∈ [2, 3, 5, 6, 7]
+    plot!(plt, [0, 1], [0, 0], linestyle=:dot, color=:black, label=&quot;&quot;, subplot = i, lw = 2)
+end
+for i ∈ [1, 2, 3, 5, 6, 7]
+    plot!(plt, legend = false, subplot = i)
+end
+plot!(plt, [0], [0], linestyle=:dot, color=:black, label=&quot;Steady state solution&quot;, subplot = 4, lw = 2)
+plt</code></pre><img src="indirect-cec655b5.svg" alt="Example block output"/><p>We can also plot the state trajectory on the phase plane and observe that when <span>$T$</span> increases, the state trajectory converges to the steady state solution <span>$(0,0)$</span>.</p><pre><code class="language-julia hljs">T = 10; time_grid_10 = range(0, T, 1000)
+plot([x[2] for x ∈ state(flow_10).(time_grid_10)], [x[3] for x ∈ state(flow_10).(time_grid_10)], label=&quot;T=10&quot;, xlabel=&quot;x&quot;, ylabel=&quot;y&quot;)
+T = 20; time_grid_20 = range(0, T, 1000)
+plot!([x[2] for x ∈ state(flow_20).(time_grid_20)], [x[3] for x ∈ state(flow_20).(time_grid_20)], label=&quot;T=20&quot;)
+T = 50; time_grid_50 = range(0, T, 1000)
+plot!([x[2] for x ∈ state(flow_50).(time_grid_50)], [x[3] for x ∈ state(flow_50).(time_grid_50)], label=&quot;T=50&quot;)</code></pre><img src="indirect-0f0320e3.svg" alt="Example block output"/></article><nav class="docs-footer"><a class="docs-footer-prevpage" href="direct.html">« Direct method</a><div class="flexbox-break"></div><p class="footer-message">Powered by <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> and the <a href="https://julialang.org/">Julia Programming Language</a>.</p></nav></div><div class="modal" id="documenter-settings"><div class="modal-background"></div><div class="modal-card"><header class="modal-card-head"><p class="modal-card-title">Settings</p><button class="delete"></button></header><section class="modal-card-body"><p><label class="label">Theme</label><div class="select"><select id="documenter-themepicker"><option value="auto">Automatic (OS)</option><option value="documenter-light">documenter-light</option><option value="documenter-dark">documenter-dark</option><option value="catppuccin-latte">catppuccin-latte</option><option value="catppuccin-frappe">catppuccin-frappe</option><option value="catppuccin-macchiato">catppuccin-macchiato</option><option value="catppuccin-mocha">catppuccin-mocha</option></select></div></p><hr/><p>This document was generated with <a href="https://github.com/JuliaDocs/Documenter.jl">Documenter.jl</a> version 1.17.0 on <span class="colophon-date" title="Wednesday 26 August 2026 19:06">Wednesday 26 August 2026</span>. Using Julia version 1.12.7.</p></section><footer class="modal-card-foot"></footer></div></div></div></body></html>
