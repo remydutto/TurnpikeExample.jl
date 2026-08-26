@@ -1,7 +1,7 @@
 name = "TurnpikeExample"
 uuid = "b9fb82f2-1395-441e-a837-7fa6811fb72e"
 authors = ["Rémy Dutto"]
-version = "0.1.0"
+version = "0.1.2"
 
 [compat]
 julia = "1.10"
