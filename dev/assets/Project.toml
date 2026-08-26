@@ -13,4 +13,6 @@ Plots = "91a5bcdd-55d7-5caf-9e0b-520d859cae80"
 TurnpikeExample = "b9fb82f2-1395-441e-a837-7fa6811fb72e"
 
 [compat]
+DifferentiationInterface = "0.7"
 Documenter = "1"
+Plots = "1"
