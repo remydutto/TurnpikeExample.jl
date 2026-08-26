@@ -2435,9 +2435,9 @@ version = "1.10.1"
 
 [[deps.SciMLOperators]]
 deps = ["Accessors", "Adapt", "ArrayInterface", "DocStringExtensions", "LinearAlgebra", "PrecompileTools", "SciMLPublic"]
-git-tree-sha1 = "bfc5c186382cc6afa718ca1c228a437d5893e918"
+git-tree-sha1 = "0b5b895913f1269a8c80b59435c61d5a7d79970c"
 uuid = "c0aeaf25-5076-4817-a8d5-81caf7dfa961"
-version = "1.29.0"
+version = "1.30.0"
 
     [deps.SciMLOperators.extensions]
     SciMLOperatorsLoopVectorizationExt = "LoopVectorization"
@@ -2824,7 +2824,7 @@ version = "1.4.0"
 [[deps.TurnpikeExample]]
 path = "/home/runner/work/TurnpikeExample.jl/TurnpikeExample.jl"
 uuid = "b9fb82f2-1395-441e-a837-7fa6811fb72e"
-version = "0.1.0"
+version = "0.1.2"
 
 [[deps.UUIDs]]
 deps = ["Random", "SHA"]
