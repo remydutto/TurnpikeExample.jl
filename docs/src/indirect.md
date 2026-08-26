@@ -196,7 +196,7 @@ H_01(s(t_1), p(t_1)) = 0.
 \end{cases}
 ```
 
-To compute the flow of the state and costate system, we use the `flow` function from `OptimalControl.jl` associated to the three structure, and construct the function `shoot!`. We use automatic differentiation thanks to `ForwardDiff.jl` package to compute the Jacobian of the shooting function, and we use direct method to obtain a good intial guess for the solver. Here is a comparison of the direct and indirect solutions for ``T = 10``. 
+To compute the flow of the state and costate system, we use the `flow` function from `OptimalControl.jl` associated to the three structure, and construct the function `shoot!`. We use automatic differentiation thanks to `ForwardDiff.jl` package to compute the Jacobian of the shooting function, and we use direct method to obtain a good initial guess for the solver. Here is a comparison of the direct and indirect solutions for ``T = 10``. 
 
 ```@example main 
 function sol(T)
@@ -276,7 +276,7 @@ plot!(plt, [0], [0], linestyle=:dot, color=:black, label="Steady state solution"
 plt
 ```
 
-We can also plot the state trajectory on the phase plane and constat that when ``T`` increases, the state trajectory converges to the steady state solution ``(0,0)``.
+We can also plot the state trajectory on the phase plane and observe that when ``T`` increases, the state trajectory converges to the steady state solution ``(0,0)``.
 
 ```@example main 
 T = 10; time_grid_10 = range(0, T, 1000)
