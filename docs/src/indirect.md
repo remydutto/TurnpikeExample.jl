@@ -14,7 +14,7 @@ Recall that the optimal control problem we are considering is:
 ```
 with ``M>0`` and ``T>0``. 
 
-This optimal control problem is associated to the stationnary optimization problem 
+This optimal control problem is associated to the stationary optimization problem 
 
 ```math
     \min_{(x,y,u)} \big \{  x^2 + y^2 \mid (x,y,u) \in \mathbb R \times \mathbb R \times [-M, M], - u = u - \frac{y}{2} = 0 \big\}.
@@ -39,8 +39,8 @@ using ForwardDiff                           # Forward mode automatic differentia
 using Ipopt, Optimization, OptimizationMOI  # Additional optimization tools
 
 M = 1.                   
-s0 = [0., 1, 0]            
-xT = 0.5; yT = 0
+s0 = [0., 1, -0.5]            
+xT = 0.5; yT = 0.5
 
 F0(s) = [
     0.5*(s[2]^2 + s[3]^2);
@@ -71,7 +71,7 @@ nothing; # hide
 ```
 
 !!! info "Note"
-    The optimal control problem parametrized with the time horizon `T` that can be adjusted in oreder to study the turnpike property.
+    The optimal control problem parametrized with the time horizon `T` that can be adjusted in order to study the turnpike property.
 
 ## Indirect framework
 
@@ -107,7 +107,7 @@ where
 H_0(s, p) = \langle p \mid F_0(s) \rangle \quad \text{and} \quad H_1(s, p) = \langle p \mid F_1(s) \rangle.
 ```
 
-Thanks to the differential geometry tools provided by `OptimalControl.jl` decribed in the [documentation](https://control-toolbox.org/OptimalControl.jl/stable/manual-differential-geometry.html), the two Hamitonians ``H_0`` and ``H_1`` can be directly defined as the lift of the vector fields ``F_0`` and ``F_1``. 
+Thanks to the differential geometry tools provided by `OptimalControl.jl` described in the [documentation](https://control-toolbox.org/OptimalControl.jl/stable/manual-differential-geometry.html), the two Hamitonians ``H_0`` and ``H_1`` can be directly defined as the lift of the vector fields ``F_0`` and ``F_1``. 
 
 ```@example main
 # Lift into (x,λ) space
@@ -158,7 +158,7 @@ Considering that we have a singular arc of the first order (i.e. ``H_{101}(s(t),
 u(t) = u_s(s(t), p(t)) = -\frac{H_{001}(s(t), p(t))}{H_{101}(s(t), p(t))}\cdot
 ```
 
-Again, thanks to the differential geometry tools provided by `OptimalControl.jl` decribed in the [documentation](https://control-toolbox.org/OptimalControl.jl/stable/manual-differential-geometry.html), one can use the `@Lie` macro to compute the Poisson brackets and define the singular control.
+Again, thanks to the differential geometry tools provided by `OptimalControl.jl` described in the [documentation](https://control-toolbox.org/OptimalControl.jl/stable/manual-differential-geometry.html), one can use the `@Lie` macro to compute the Poisson brackets and define the singular control.
 
 ```@example main
 # Lie bracket
@@ -184,7 +184,7 @@ u(t) =
     \end{cases}
 ```
 
-with ``0 < t_1 < t_2 < T``. We say that the control is `Bang-Singular-Bang`, and one suppose that the solution has this structure for all ``T>0`` large enough. Morevoer, one suppose that the solution are normal (i.e. ``p_c < 0``), and we fix ``p_c = -1`` in the following.
+with ``0 < t_1 < t_2 < T``. We say that the control is `Bang-Singular-Bang`, and one suppose that the solution has this structure for all ``T>0`` large enough. Moreover, one suppose that the solution are normal (i.e. ``p_c < 0``), and we fix ``p_c = -1`` in the following.
 Thanks to the boundary conditions given by the problem and by the transversality conditions of the Pontryagin maximum principle, we can define the shooting function associated to the optimal structure we have determined. This shooting function has 4 components, corresponding to the 4 unknowns ``p_x(0)``, ``p_y(0)``, ``t_1`` and ``t_2``, and the four following equations:
 
 ```math
