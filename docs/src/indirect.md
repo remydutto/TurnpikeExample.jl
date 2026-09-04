@@ -19,7 +19,7 @@ This optimal control problem is associated to the stationary optimization proble
 ```math
     \min_{(x,y,u)} \big \{  x^2 + y^2 \mid (x,y,u) \in \mathbb R \times \mathbb R \times [-M, M], - u = u - \frac{y}{2} = 0 \big\}.
 ```
-The static solution is thus given by ``(x^\star, y^\star, u^\star) = (0, 0, 0)``. This solution corresponds to the static equilibrium ``(x,y,u)`` which minimizes the cost ``J(x,y,u)`` under the control constraint ``|u|\leq M``. Our goal is to numerically show that this problem has the `turnpike` property, i.e. if the final time ``T`` is large enough, the optimal trajectory has the following form : starting from the initial state ``(x(0), y(0)) = (1, -0.5)``, the trajectory try to reach as fast as possible the static equilibrium ``(x^\star, y^\star, u^\star) = (0, 0, 0)`` and to stay close to it until it has to leave it to reach the final state ``(x(T), y(T)) = (0.5, 0.5)``.
+The static solution is thus given by ``(x^\star, y^\star, u^\star) = (0, 0, 0)``. This solution corresponds to the static equilibrium ``(x,y,u)`` which minimizes the cost ``J(x,y,u)`` under the control constraint ``|u|\leq M``. Our goal is to numerically show that this problem has the `turnpike` property, i.e. if the final time ``T`` is large enough, the optimal trajectory has the following form : starting from the initial state ``(x(0), y(0)) = (1, -0.5)``, the trajectory tries to reach as fast as possible the static equilibrium ``(x^\star, y^\star, u^\star) = (0, 0, 0)`` and to stay close to it until it has to leave it to reach the final state ``(x(T), y(T)) = (0.5, 0.5)``.
 
 
 !!! info "Main goals"
@@ -107,7 +107,7 @@ where
 H_0(s, p) = \langle p \mid F_0(s) \rangle \quad \text{and} \quad H_1(s, p) = \langle p \mid F_1(s) \rangle.
 ```
 
-Thanks to the differential geometry tools provided by `OptimalControl.jl` described in the [documentation](https://control-toolbox.org/OptimalControl.jl/stable/manual-differential-geometry.html), the two Hamitonians ``H_0`` and ``H_1`` can be directly defined as the lift of the vector fields ``F_0`` and ``F_1``. 
+Thanks to the differential geometry tools provided by `OptimalControl.jl` described in the [documentation](https://control-toolbox.org/OptimalControl.jl/stable/manual-differential-geometry.html), the two Hamiltonians ``H_0`` and ``H_1`` can be directly defined as the lift of the vector fields ``F_0`` and ``F_1``. 
 
 ```@example main
 # Lift into (x,λ) space
@@ -184,7 +184,7 @@ u(t) =
     \end{cases}
 ```
 
-with ``0 < t_1 < t_2 < T``. We say that the control is `Bang-Singular-Bang`, and one suppose that the solution has this structure for all ``T>0`` large enough. Moreover, one suppose that the solution are normal (i.e. ``p_c < 0``), and we fix ``p_c = -1`` in the following.
+with ``0 < t_1 < t_2 < T``. We say that the control is `Bang-Singular-Bang`, and one supposes that the solution has this structure for all ``T>0`` large enough. Moreover, one supposes that the solution is normal (i.e. ``p_c < 0``), and we fix ``p_c = -1`` in the following.
 Thanks to the boundary conditions given by the problem and by the transversality conditions of the Pontryagin maximum principle, we can define the shooting function associated to the optimal structure we have determined. This shooting function has 4 components, corresponding to the 4 unknowns ``p_x(0)``, ``p_y(0)``, ``t_1`` and ``t_2``, and the four following equations:
 
 ```math
@@ -192,11 +192,11 @@ Thanks to the boundary conditions given by the problem and by the transversality
 x(T) - 0.5 = 0, \\
 y(T) = 0, \\
 H_1(s(t_1), p(t_1)) = 0, \\
-H_01(s(t_1), p(t_1)) = 0.
+H_{01}(s(t_1), p(t_1)) = 0.
 \end{cases}
 ```
 
-To compute the flow of the state and costate system, we use the `flow` function from `OptimalControl.jl` associated to the three structure, and construct the function `shoot!`. We use automatic differentiation thanks to `ForwardDiff.jl` package to compute the Jacobian of the shooting function, and we use direct method to obtain a good initial guess for the solver. Here is a comparison of the direct and indirect solutions for ``T = 10``. 
+To compute the flow of the state and costate system, we use the `flow` function from `OptimalControl.jl` associated to the three structures, and construct the function `shoot!`. We use automatic differentiation thanks to `ForwardDiff.jl` package to compute the Jacobian of the shooting function, and we use direct method to obtain a good initial guess for the solver. Here is a comparison of the direct and indirect solutions for ``T = 10``. 
 
 ```@example main 
 function sol(T)
@@ -255,7 +255,7 @@ plot!(flow_10, label="indirect")
 
 ## Turnpike property
 
-To highlight that the studied optimal control problem has the turnpike property, we compare the indirect solutions for different values of ``T``. We choose to plot the solutions for ``T \in \{10, 20, 50\}``. Thanks to the `control-toolbox` ecosystem, we can easily compute the solutions and plot them on the same plot with a normalized time thanks by simply giving the keyword argument `time=:normalize` to the `plot` function.
+To highlight that the studied optimal control problem has the turnpike property, we compare the indirect solutions for different values of ``T``. We choose to plot the solutions for ``T \in \{10, 20, 50\}``. Thanks to the `control-toolbox` ecosystem, we can easily compute the solutions and plot them on the same plot with a normalized time by simply giving the keyword argument `time=:normalize` to the `plot` function.
 
 ```@example main 
 # Compute solutions for different values of T
